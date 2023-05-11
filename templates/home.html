@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+        <li class="breadcrumb-item active">Characters</li>
+{% endblock %}
+
+{% block content %}
+      <table class="table">
+        <thread class="thread-inverse">
+          <tr>
+            <th>Character</th>
+            <th>Description</th>
+            <th>Image</th>
+          </tr>
+        </thread>
+        <tbody>
+          {% for character in characters %}
+            <tr>
+              <td>
+                <a href="{% url 'characters' character.pk %}">{{ character.name }}</a>
+              </td>
+              <td>
+                {{ character.description}}
+              </td>
+              <td>
+                <a href="{% url 'characters' character.pk %}"><img src= {{ character.main_Img.url }} alt="Image Not Found" style="width:200px;height:200px;"></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}

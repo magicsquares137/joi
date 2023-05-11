@@ -1,0 +1,10 @@
+MODEL_SETTINGS:
+  Characters:
+    name_length: 30
+    description_length: 100
+  User_Posts:
+    message_length: 4000
+  Bot_Replies:
+    message_length: 4000
+VIEW_SETTINGS:
+  Message_History: 10
