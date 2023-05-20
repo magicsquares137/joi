@@ -57,11 +57,8 @@ def character_conversation(request, pk, bot_message_pk):
                 )
             else:
                 message_form = NewUserRequest()
-                # bot_rating_form = Bot_Feedback()
-
     else:
         message_form = NewUserRequest()
-        # bot_rating_form = Bot_Feedback()
     return render(
         request,
         "characters_convo.html",
