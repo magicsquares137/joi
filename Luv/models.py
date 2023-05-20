@@ -45,13 +45,6 @@ class User_Posts(models.Model):
     def __str__(self):
         return str(self.post_date)
 
-
-GOOD = "GOOD"
-BAD = "BAD"
-
-RATE_CHOICES = ((GOOD, "Good"), (BAD, "Bad"))
-
-
 class Bot_Replies(models.Model):
     message = models.TextField(
         max_length=CONFIG["MODEL_SETTINGS"]["Bot_Replies"]["message_length"]
