@@ -1,6 +1,5 @@
 from django import forms
 from .models import User_Posts, Bot_Replies
-from .models import RATE_CHOICES
 import yaml
 import os
 from django.conf import settings
