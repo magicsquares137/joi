@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'home' %}">Character</a></li>
-  <li class="breadcrumb-item"><a href="{% url 'characters' character.pk %}">{{ character.name }}</a></li>
+  <li class="breadcrumb-item">{{ character.name }}</a></li>
   <li class="breadcrumb-item active">New Convo</li>
 {% endblock %}
 
@@ -33,14 +33,30 @@
             {{ post.message }}
           </div>
           {% if post.non_bot == 'bot' %}
-            <div class="col-2">
-                  <form method="post" novalidate>
-                    {% csrf_token %}
-                    {{ bot_rating_form.as_p }}
-                    {% include 'includes/form.html' %}
-                    <input type="hidden" name="form_type" value="bot_rating">
-                    <button type="submit" class="btn btn-success">Rate</button>
-                  </form>
+              <div class="col-2">
+                {% if post.response_rating == 'Good' %}
+                <form method="post">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input type="radio" class="form-control" id="rating" name="rating", value="Good" checked="checked">Good<br>
+                    <input type="radio" class="form-control" id="rating" name="rating", value="Bad">Bad<br>
+                    <input type="hidden" name="form_post" value="{{post.pk}}">
+                    <input type="hidden" name="form_type" value="response_rating">
+                  </div>
+                  <button type="submit" class="btn btn-success">Rate</button>
+                </form>
+                {% else %}
+                <form method="post">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input type="radio" class="form-control" id="rating" name="rating", value="Good">Good<br>
+                    <input type="radio" class="form-control" id="rating" name="rating", value="Bad" checked="checked">Bad<br>
+                    <input type="hidden" name="form_post" value="{{post.pk}}">
+                    <input type="hidden" name="form_type" value="response_rating">
+                  </div>
+                  <button type="submit" class="btn btn-success">Rate</button>
+                </form>
+                {% endif %}
               </div>
           {% endif %}
         </div>

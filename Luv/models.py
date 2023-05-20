@@ -31,13 +31,21 @@ class User_Posts(models.Model):
 	def __str__(self):
 		return str(self.post_date)
 
+GOOD = "GOOD"
+BAD = "BAD"
+
+RATE_CHOICES = (
+	(GOOD, "Good"),
+	(BAD, "Bad")
+	)
+
 class Bot_Replies(models.Model):
 	message = models.TextField(max_length=CONFIG['MODEL_SETTINGS']['Bot_Replies']['message_length'])
 	character = models.ForeignKey(Characters, related_name='bot_posts', on_delete=models.CASCADE)
 	post_date = models.DateTimeField(auto_now_add=True)
 	created_by = models.ForeignKey(User, related_name='user_origin', on_delete=models.CASCADE)
 	non_bot = models.CharField(max_length = 10, default = 'bot')
-	response_rating = models.BooleanField(default=True)
+	response_rating = models.CharField(max_length=4, default = 'Good')
 
 	class Meta:
 		verbose_name_plural = 'Bot_Replies'

@@ -16,16 +16,29 @@ def home(request):
 	characters = Characters.objects.all()
 	return render(request, 'home.html', {'characters': characters})
 
+
 @login_required
-def character_conversation(request, pk):
+def character_conversation(request, pk, bot_message_pk): 
 	#will need to pass user messages through pk into model api
+	character = get_object_or_404(Characters, pk = pk)
 	if request.method == 'POST' and request.POST.get("form_type") == 'user_entry':
 			message = 'hello'
-			character = get_object_or_404(Characters, pk = pk)
+
 			reply = Bot_Replies(message = message, character = character, created_by = request.user).save()
 	
 			character.views += 1
 			character.save()
+	if request.method == 'POST' and request.POST.get("form_type") == 'response_rating':
+			#get pk for message attached to form
+			bot_message_pk = request.POST.get("form_post")
+			instance = get_object_or_404(Bot_Replies, pk = bot_message_pk)
+			instance.response_rating = request.POST.get("rating")
+			instance.save()
+			return redirect('characters', pk = character.pk, bot_message_pk = 1)
+			
+
+
+
 	character = get_object_or_404(Characters, pk = pk)
 	user_posts = User_Posts.objects.filter(created_by = request.user, character__pk = pk)
 	bot_posts = Bot_Replies.objects.filter(created_by = request.user, character__pk = pk)
@@ -44,20 +57,12 @@ def character_conversation(request, pk):
 				char_convo.character = character
 				char_convo.created_by = request.user
 				char_convo.save()
-				return redirect('characters', pk = character.pk)
+				return redirect('characters', pk = character.pk, bot_message_pk = bot_message_pk)
 			else:
-				form = NewUserRequest()
-		if request.POST.get("form_type") == 'bot_rating':
-			#instance = get_object_or_404(Bot_Replies, pk = bot_message_pk)
-			form = Bot_Feedback(request.POST)#, instance = instance)
-			if form.is_valid():
-				rating = form.save(commit=False)
-				rating.response_rating = form.cleaned_data.get('response_rating')
-				#rating.save()
-				return redirect('characters', pk = character.pk)
-			else:
-				form = Bot_Feedback()
+				message_form = NewUserRequest()
+				#bot_rating_form = Bot_Feedback()
+
 	else:
 		message_form = NewUserRequest()
-		bot_rating_form = Bot_Feedback()
-	return render(request, 'characters_convo.html', {'character': character, 'message_form': message_form, 'bot_rating_form': bot_rating_form, 'posts': posts_list})
+		#bot_rating_form = Bot_Feedback()
+	return render(request, 'characters_convo.html', {'character': character, 'message_form': NewUserRequest(), 'posts': posts_list})

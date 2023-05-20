@@ -1,5 +1,6 @@
 from django import forms
 from .models import User_Posts, Bot_Replies
+from .models import RATE_CHOICES
 import yaml
 import os
 from django.conf import settings
@@ -17,7 +18,7 @@ class NewUserRequest(forms.ModelForm):
 
 
 class Bot_Feedback(forms.ModelForm):
-    response_rating = forms.BooleanField()
+    #response_rating = forms.CharField(max_length=4, choices=RATE_CHOICES, default=GOOD)
 
     class Meta:
         model = Bot_Replies

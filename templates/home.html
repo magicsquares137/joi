@@ -18,13 +18,13 @@
           {% for character in characters %}
             <tr>
               <td>
-                <a href="{% url 'characters' character.pk %}">{{ character.name }}</a>
+                <a href="{% url 'characters' character.pk 1 %}">{{ character.name }}</a>
               </td>
               <td>
                 {{ character.description}}
               </td>
               <td>
-                <a href="{% url 'characters' character.pk %}"><img src= {{ character.main_Img.url }} alt="Image Not Found" style="width:200px;height:200px;"></a>
+                <a href="{% url 'characters' character.pk 1 %}"><img src= {{ character.main_Img.url }} alt="Image Not Found" style="width:200px;height:200px;"></a>
               </td>
             </tr>
           {% endfor %}
