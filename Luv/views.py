@@ -21,13 +21,6 @@ def home(request):
 def character_conversation(request, pk, bot_message_pk): 
 	#will need to pass user messages through pk into model api
 	character = get_object_or_404(Characters, pk = pk)
-	if request.method == 'POST' and request.POST.get("form_type") == 'user_entry':
-			message = 'hello'
-
-			reply = Bot_Replies(message = message, character = character, created_by = request.user).save()
-	
-			character.views += 1
-			character.save()
 	if request.method == 'POST' and request.POST.get("form_type") == 'response_rating':
 			#get pk for message attached to form
 			bot_message_pk = request.POST.get("form_post")
@@ -35,9 +28,10 @@ def character_conversation(request, pk, bot_message_pk):
 			instance.response_rating = request.POST.get("rating")
 			instance.save()
 			return redirect('characters', pk = character.pk, bot_message_pk = 1)
-			
-
-
+	message = 'hello'
+	reply = Bot_Replies(message = message, character = character, created_by = request.user).save()
+	character.views += 1
+	character.save()		
 
 	character = get_object_or_404(Characters, pk = pk)
 	user_posts = User_Posts.objects.filter(created_by = request.user, character__pk = pk)
