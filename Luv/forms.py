@@ -1,5 +1,5 @@
 from django import forms
-from .models import User_Posts
+from .models import User_Posts, Bot_Replies
 import yaml
 import os
 from django.conf import settings
@@ -14,3 +14,11 @@ class NewUserRequest(forms.ModelForm):
     class Meta:
         model = User_Posts
         fields = ['message']
+
+
+class Bot_Feedback(forms.ModelForm):
+    response_rating = forms.BooleanField()
+
+    class Meta:
+        model = Bot_Replies
+        fields = ['response_rating']

@@ -32,6 +32,17 @@
           <div class="col-2">
             {{ post.message }}
           </div>
+          {% if post.non_bot == 'bot' %}
+            <div class="col-2">
+                  <form method="post" novalidate>
+                    {% csrf_token %}
+                    {{ bot_rating_form.as_p }}
+                    {% include 'includes/form.html' %}
+                    <input type="hidden" name="form_type" value="bot_rating">
+                    <button type="submit" class="btn btn-success">Rate</button>
+                  </form>
+              </div>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -40,7 +51,9 @@
 
   <form method="post" novalidate>
     {% csrf_token %}
+    {{ message_form.as_p }}
     {% include 'includes/form.html' %}
+    <input type="hidden" name="form_type" value="user_entry">
     <button type="submit" class="btn btn-success">Post</button>
   </form>
 {% endblock %}

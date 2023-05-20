@@ -37,6 +37,8 @@ class Bot_Replies(models.Model):
 	post_date = models.DateTimeField(auto_now_add=True)
 	created_by = models.ForeignKey(User, related_name='user_origin', on_delete=models.CASCADE)
 	non_bot = models.CharField(max_length = 10, default = 'bot')
+	response_rating = models.BooleanField(default=True)
+
 	class Meta:
 		verbose_name_plural = 'Bot_Replies'
 	def __str__(self):

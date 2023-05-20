@@ -3,7 +3,7 @@ MODEL_SETTINGS:
     name_length: 30
     description_length: 100
   User_Posts:
-    message_length: 4000
+    message_length: 400
   Bot_Replies:
     message_length: 4000
 VIEW_SETTINGS:
