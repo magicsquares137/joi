@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("Luv", "0007_alter_bot_replies_non_bot_alter_user_posts_non_bot"),
     ]

@@ -6,20 +6,24 @@ import os
 from django.conf import settings
 
 
-with open(os.path.join(settings.BASE_DIR, 'config.yml'), 'r') as file:
-	CONFIG = yaml.safe_load(file)
+with open(os.path.join(settings.BASE_DIR, "config.yml"), "r") as file:
+    CONFIG = yaml.safe_load(file)
+
 
 class NewUserRequest(forms.ModelForm):
-    message = forms.CharField(widget=forms.Textarea(), max_length=CONFIG['MODEL_SETTINGS']['User_Posts']['message_length'])
+    message = forms.CharField(
+        widget=forms.Textarea(),
+        max_length=CONFIG["MODEL_SETTINGS"]["User_Posts"]["message_length"],
+    )
 
     class Meta:
         model = User_Posts
-        fields = ['message']
+        fields = ["message"]
 
 
 class Bot_Feedback(forms.ModelForm):
-    #response_rating = forms.CharField(max_length=4, choices=RATE_CHOICES, default=GOOD)
+    # response_rating = forms.CharField(max_length=4, choices=RATE_CHOICES, default=GOOD)
 
     class Meta:
         model = Bot_Replies
-        fields = ['response_rating']
+        fields = ["response_rating"]

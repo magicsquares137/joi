@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("Luv", "0010_alter_bot_replies_options_alter_characters_options_and_more"),
     ]
