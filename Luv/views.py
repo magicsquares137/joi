@@ -77,3 +77,60 @@ def character_conversation(request, pk, bot_message_pk):
         "characters_convo.html",
         {"character": character, "message_form": NewUserRequest(), "posts": posts_list},
     )
+
+
+@login_required
+def update_response_rating(request, bot_message_pk):
+    instance = get_object_or_404(Bot_Replies, pk=bot_message_pk)
+    instance.response_rating = request.POST.get("rating")
+    instance.save()
+    return JsonResponse({
+        "status": True,
+    })
+
+
+@login_required
+def get_character_conversation(request, pk):
+    form = NewUserRequest(request.POST)
+    if form.is_valid():
+        character = get_object_or_404(Characters, pk=pk)
+        char_convo = form.save(commit=False)
+        char_convo.message = form.cleaned_data.get("message")
+        char_convo.character = character
+        char_convo.created_by = request.user
+        char_convo.save()
+
+        message = "hello"
+        reply = Bot_Replies(
+            message=message, character=character, created_by=request.user
+        ).save()
+        character.views += 1
+        character.save()
+
+    character = get_object_or_404(Characters, pk=pk)
+    user_posts = User_Posts.objects.filter(created_by=request.user, character__pk=pk)
+    bot_posts = Bot_Replies.objects.filter(created_by=request.user, character__pk=pk).order_by('-post_date')
+
+    character_serializer = CharactersSerializer(character)
+    character_data = character_serializer.data
+
+    user_posts_serializer = UserPostsSerializer(user_posts, many=True)
+    user_posts_data = user_posts_serializer.data
+
+    if bot_posts.exists():
+        latest_bot_post = bot_posts.first()
+        bot_posts_serializer = BotRepliesSerializer(latest_bot_post)
+        bot_posts_data = bot_posts_serializer.data
+    else:
+        bot_posts_data = None
+
+    print("character", character_data)
+    print("user_posts", user_posts_data)
+    print("bot_posts", bot_posts_data)
+
+    return JsonResponse({
+        "status": True,
+        "character": character_data,
+        "user_posts": user_posts_data,
+        "bot_posts": bot_posts_data
+    })
