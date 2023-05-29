@@ -16,3 +16,4 @@ class BotRepliesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bot_Replies
         fields = '__all__'
+        depth = 1

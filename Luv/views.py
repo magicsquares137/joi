@@ -100,7 +100,7 @@ def get_character_conversation(request, pk):
         char_convo.created_by = request.user
         char_convo.save()
 
-        message = "hello"
+        message = "Thanks for messaging. I am under development"
         reply = Bot_Replies(
             message=message, character=character, created_by=request.user
         ).save()
@@ -124,13 +124,10 @@ def get_character_conversation(request, pk):
     else:
         bot_posts_data = None
 
-    print("character", character_data)
-    print("user_posts", user_posts_data)
-    print("bot_posts", bot_posts_data)
-
     return JsonResponse({
         "status": True,
         "character": character_data,
-        "user_posts": user_posts_data,
-        "bot_posts": bot_posts_data
+        "user_posts": user_posts_data[-1],
+        "bot_posts": bot_posts_data,
+        "user": request.user.username
     })
