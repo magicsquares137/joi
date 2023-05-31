@@ -10,6 +10,7 @@
 
 {% block content %}
   
+  <div id="post-container">
   {% for post in posts %}
     <div class="card mb-2">
       <div class="card-body p-3">
@@ -23,7 +24,7 @@
             </div>
           {% else %}
             <div class="col-2">
-              <img src= {{ character.main_Img.url }} alt="Image Not Found" style="width:50px;height:60px;">
+              <img src="{{ character.main_Img.url }}" alt="Image Not Found" style="width:50px;height:60px;">
             </div>
             <div class="col-2">
               {{ post.character }}
@@ -35,23 +36,23 @@
           {% if post.non_bot == 'bot' %}
               <div class="col-2">
                 {% if post.response_rating == 'Good' %}
-                <form method="post">
+                <form method="post" id="rating-form-{{ post.pk }}">
                   {% csrf_token %}
                   <div class="form-group">
-                    <input type="radio" class="form-control" id="rating" name="rating", value="Good" checked="checked">Good<br>
-                    <input type="radio" class="form-control" id="rating" name="rating", value="Bad">Bad<br>
-                    <input type="hidden" name="form_post" value="{{post.pk}}">
+                    <input type="radio" class="form-control" id="rating" name="rating" value="Good" checked="checked">Good<br>
+                    <input type="radio" class="form-control" id="rating" name="rating" value="Bad">Bad<br>
+                    <input type="hidden" name="form_post" value="{{ post.pk }}">
                     <input type="hidden" name="form_type" value="response_rating">
                   </div>
                   <button type="submit" class="btn btn-success">Rate</button>
                 </form>
                 {% else %}
-                <form method="post">
+                <form method="post" id="rating-form-{{ post.pk }}">
                   {% csrf_token %}
                   <div class="form-group">
-                    <input type="radio" class="form-control" id="rating" name="rating", value="Good">Good<br>
-                    <input type="radio" class="form-control" id="rating" name="rating", value="Bad" checked="checked">Bad<br>
-                    <input type="hidden" name="form_post" value="{{post.pk}}">
+                    <input type="radio" class="form-control" id="rating" name="rating" value="Good">Good<br>
+                    <input type="radio" class="form-control" id="rating" name="rating" value="Bad" checked="checked">Bad<br>
+                    <input type="hidden" name="form_post" value="{{ post.pk }}">
                     <input type="hidden" name="form_type" value="response_rating">
                   </div>
                   <button type="submit" class="btn btn-success">Rate</button>
@@ -63,13 +64,109 @@
       </div>
     </div>
   {% endfor %}
+  </div>
 
 
-  <form method="post" novalidate>
+  <form method="post" novalidate id="user-entry-form">
     {% csrf_token %}
     {{ message_form.as_p }}
     {% include 'includes/form.html' %}
     <input type="hidden" name="form_type" value="user_entry">
     <button type="submit" class="btn btn-success">Post</button>
   </form>
+
+  <script>
+    $(document).ready(function() {
+
+      // AJAX call to retrieve bot replies
+      $('#user-entry-form').submit(function(event) {
+        event.preventDefault();
+        var formData = $(this).serialize();
+        var baseUrl = window.location.protocol + "//" + window.location.host;
+        var url = baseUrl + '/api/get_character_conversation/' + {{ character.pk }} + '/';
+
+        $.ajax({
+          type: 'POST',
+          url: url,
+          data: formData,
+          success: function(response) {
+           document.querySelector("#id_message").value = '';
+            // Handle the successful response
+            // You can update the UI with the new bot replies here
+            // For example, you can replace the entire conversation with the new conversation
+            // using $('#conversation').html(response.conversation);
+            console.log("response", response);
+
+            // Append the new post to the conversation
+            var post = response.user_posts;
+            var user_name = response.user;
+            var BotPost = response.bot_posts;
+            var postPk = BotPost.id;
+            var postHtml = '<div class="card mb-2">' +
+              '<div class="card-body p-3">' +
+              '<div class="row">' +
+              '<div class="col-2">' +
+              'WIP' +
+              '</div>' +
+              '<div class="col-2">' +
+              user_name +
+              '</div>' +
+              '<div class="col-2">' +
+              post.message +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>';
+              function getCsrfToken() {
+                var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+                return csrfToken;
+              }
+              var csrfToken = getCsrfToken();
+
+              var postHtmlBot = '<div class="card mb-2">' +
+              '<div class="card-body p-3">' +
+              '<div class="row">' +
+              '<div class="col-2">' +
+              '<img src="'+BotPost.character.main_Img+'" alt="Image Not Found" style="width:50px;height:60px;">' +
+              '</div>' +
+              '<div class="col-2">' +
+              BotPost.character.name +
+              '</div>' +
+              '<div class="col-2">' +
+              BotPost.message +
+              '</div>' +
+              '<div class="col-2">' +
+              '<form method="post" id="ibadAjeebsa">' +
+                '<input type="hidden" name="csrfmiddlewaretoken" value="' + csrfToken + '">' +
+                '<div class="form-group">' +
+                  '<input type="radio" class="form-control" id="rating" name="rating" value="Good" checked="checked">Good<br>' +
+                  '<input type="radio" class="form-control" id="rating" name="rating" value="Bad">Bad<br>' +
+                  '<input type="hidden" name="form_post" value="' + postPk + '">' +
+                  '<input type="hidden" name="form_type" value="response_rating">' +
+                '</div>' +
+                '<button type="submit" class="btn btn-success">Rate</button>' +
+              '</form>' +
+            '</div>'
+              '</div>' +
+              '</div>' +
+              '</div>';
+
+            // Append the new post HTML to the posts container
+            $('#post-container').append(postHtml);
+            $('#post-container').append("<p id='bot-think'>" + BotPost.character.name + " is Thinking...</p>");
+            const myTimeout = setTimeout(function(){
+
+              $('#bot-think').remove();
+              $('#post-container').append(postHtmlBot);
+
+            }, 1000);
+          },
+          error: function(xhr, textStatus, errorThrown) {
+            // Handle any errors that occur during the AJAX request
+            console.log(errorThrown);
+          }
+        });
+      });
+    });
+  </script>
 {% endblock %}

@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from Luv import views
 from accounts import views as accounts_views
 from django.contrib.auth import views as auth_views
@@ -31,6 +31,7 @@ urlpatterns = [
         name="login",
     ),
     re_path(r"^logout/$", auth_views.LogoutView.as_view(), name="logout"),
+    re_path(r"^api/", include("Luv.urls")),
     re_path(
         r"^characters/(?P<pk>\d+)/(?P<bot_message_pk>\d+)$",
         views.character_conversation,
