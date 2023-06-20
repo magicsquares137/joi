@@ -1,33 +1,64 @@
-{% extends 'base.html' %}
+{% extends 'homepage.html' %}
 {% load static %}
 
-{% block breadcrumb %}
-        <li class="breadcrumb-item active">Characters</li>
-{% endblock %}
+{% block inpage %}
+<div class="right-panel">
+    <div class="category-filter-panel">
+        <ul class="owl-carousel">
+        {% for category in data.categories %}
+            <li><a class="category-filter-btn active" href="{% url 'Luv:category_view' category_id=category.id %}">{{ category.name }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="cards-container">
+        <div class="cards-container">
+            <ul id="cards-slider" class="cards-slider">
+            {% for character in data.characters %}
+                <li>
+                <a href="{% url 'characters' character.pk 1 %}">
+                    <div class="card-item">
+                        <div class="card-item-user-img">
+                            <img src={{ character.main_Img.url }} alt="" />
+                            <div class="new-card">New</div>
+                        </div>
 
-{% block content %}
-      <table class="table">
-        <thread class="thread-inverse">
-          <tr>
-            <th>Character</th>
-            <th>Description</th>
-            <th>Image</th>
-          </tr>
-        </thread>
-        <tbody>
-          {% for character in characters %}
-            <tr>
-              <td>
-                <a href="{% url 'characters' character.pk 1 %}">{{ character.name }}</a>
-              </td>
-              <td>
-                {{ character.description}}
-              </td>
-              <td>
-                <a href="{% url 'characters' character.pk 1 %}"><img src= {{ character.main_Img.url }} alt="Image Not Found" style="width:200px;height:200px;"></a>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+                        <div class="card-item-user-info">
+                            <div class="card-item-user-info-top">
+                                <p class="card-item-title">
+                                    {{ character.name }}
+                                </p>
+                                <p class="card-item-description">
+                                    {{ character.description }}
+                                </p>
+                            </div>
+                            <div class="card-item-user-info-btm">
+                                <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.86557 3.33999H4.35223H5.8389" stroke="#FCDA00"
+                                        stroke-width="0.6" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M2.86557 4.82665H3.6089H4.35223" stroke="#FCDA00"
+                                        stroke-width="0.6" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M4.35225 7.79998C6.40489 7.79998 8.06891 6.13596 8.06891 4.08332C8.06891 2.03066 6.40489 0.366659 4.35225 0.366659C2.29959 0.366659 0.63559 2.03066 0.63559 4.08332C0.63559 4.76027 0.81658 5.39497 1.13281 5.94165L0.821423 7.61415L2.49392 7.30276C3.04059 7.61898 3.6753 7.79998 4.35225 7.79998Z"
+                                        stroke="#FCDA00" stroke-width="0.6" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <p>10.6m</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                </li>
+            {% endfor %}
+            </ul>
+                    </div>
+                </div>
+                <div class="container">
+                    <ol class="breadcrumb my-4">
+                    </ol>
+                </div>
+
+    </div>
 {% endblock %}
