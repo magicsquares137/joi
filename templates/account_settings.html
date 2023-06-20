@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <h1>Account Page</h1>
+    <h1>FIRST NAME</h1>
+    <h1>{{request.user.first_name}}</h1>
+    <h1>PROFILE IMAGE</h1>
+    {% if request.user.profile.main_Img %}
+  <h1>Profile Image</h1>
+  <img src="{{ request.user.profile.main_Img.url }}" alt="Profile Image">
+{% endif %}
+    <h1>{{a}}</h1>
+    <h1>Username</h1>
+    <input type="text" name="username" id="username">
+    <h1>Image Field</h1>
+    <input type="file" id="image" name="image">
+    <button onclick="send_data()">Update Data</button>
+
+    <button id="delete-user-button" onclick="deleteUser()">Delete User</button>
+
+    <script>
+
+
+      function deleteUser() {
+        $.ajax({
+          url: "{% url 'Luv:delete_user' %}",
+            type: 'POST',
+            data: {
+              csrfmiddlewaretoken : '{{ csrf_token }}'
+            },
+            success: function(response) {
+                // Handle the success response if needed
+                console.log('User deleted successfully');
+                window.location.href = '/';  // Redirect to 'register' URL
+            },
+            error: function(xhr, errmsg, err) {
+                // Handle the error response if needed
+                console.log('Error deleting user');
+            }
+        });
+    }
+        function send_data(){
+        var formData = new FormData();
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+        formData.append('username', $('#username').val());
+        formData.append('image', $('#image')[0].files[0]);
+        
+        $.ajax({
+          url: "{% url 'Luv:account' %}",
+          method: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (data) {
+            console.log("DATAAAAAA", data.username);
+            location.reload();
+          }
+        });
+    }
+        </script>
+</body>
+</html>
