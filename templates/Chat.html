@@ -1,0 +1,93 @@
+{% extends 'homepage.html' %}
+{% load static %}
+            {% block inpage %}
+            <div class="right-panel">
+              <div class="previous-page desktop-back">
+                <button type="button">
+                <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="14.2884" cy="14.2891" r="14.2885" transform="rotate(-180 14.2884 14.2891)" fill="#FCDA00"/>
+                    <path d="M16.3547 6.66839L9.9956 13.0276C9.24459 13.7786 9.24459 15.0075 9.9956 15.7585L16.3547 22.1177" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <a style="text-decoration: none" href="javascript:history.back()">
+                    <p>Back</p>
+                    </a>
+                </button>             
+              </div>
+              <div class="chat-page">
+              <div class="chating-container">
+                <div class="user-chating">
+                <ul id = "user-chating-list">
+                    {% for post in posts %}
+                    <li class="user-chat ">
+                        <div class="user-chat-ls">
+                            <div class="user-chat-profile">
+                                {% if post.non_bot == 'user' %}
+                                <img class="model-talk" src="assets/image 1.png"/>
+                                {% else %}
+                                <img class="model-talk" src="{{ character.main_Img.url }}"/>
+                                {% endif %}
+                                </div>
+                        </div>
+                        <div class="user-chat-rs">
+                            <div class="user-chat-data">
+                                {% if post.non_bot == 'user' %}
+                                <p class="user-title">{{ post.created_by }}</p>
+                                {% else %}
+                                <p class="user-title">{{ post.character }}</p>
+                                {% endif %}
+                                <p class="user-chating-text">
+                                    {{ post.message }}
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                </div>
+                
+                <div class="chating-text-field">
+                    <form method="post" novalidate id="user-entry-form">
+                        {% csrf_token %}
+                        {{ message_form.as_p }}
+                        {% include 'includes/form.html' %}
+                        <input type="hidden" name="form_type" value="user_entry">
+                        <button
+                            class="sent-chat-btn" type="submit"><svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.7822 6.15478L7.2182 1.37278C0.793788 -1.84501 -1.84301 0.791788 1.37478 7.2162L2.34682 9.16032C2.62614 9.73014 2.62614 10.3893 2.34682 10.9592L1.37478 12.8921C-1.84301 19.3165 0.782615 21.9533 7.2182 18.7355L16.7822 13.9535C21.0726 11.8083 21.0726 8.30001 16.7822 6.15478ZM13.1734 10.8921H7.13999C6.6819 10.8921 6.30202 10.5122 6.30202 10.0542C6.30202 9.59606 6.6819 9.21618 7.13999 9.21618H13.1734C13.6315 9.21618 14.0113 9.59606 14.0113 10.0542C14.0113 10.5122 13.6315 10.8921 13.1734 10.8921Z"
+                                    fill="#FCDA00"></path>
+                            </svg>
+                        </button>
+                      </form>
+                </div> 
+              </div>
+              <div class="model-card-container">
+                <div class="model-card-data">
+                    <div class="previous-page mobile-back">
+                        <button type="button">
+                            <svg width="8" height="16" viewBox="0 0 8 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 1.60929L1.4882 7.12112C0.837266 7.77205 0.837266 8.83722 1.4882 9.48816L7 15" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>                                     
+                        </button>             
+                      </div>
+                    <div class="model-profile">
+                        <img src="{{ character.main_Img.url }}" alt=""/>
+                    </div>
+                    <div class="model-profile-info">
+                        <p class="model-profile-title">{{ character.name }}</p>
+                        <p class="model-profile-para">{{ character.description }}</p>
+                        <div class="model-chat-review">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.15198 11.9116H14.5867H20.0214" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9.15198 17.3467H11.8693H14.5867" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14.5868 28.2165C22.0905 28.2165 28.1735 22.1334 28.1735 14.6297C28.1735 7.12596 22.0905 1.04297 14.5868 1.04297C7.08305 1.04297 1.00006 7.12596 1.00006 14.6297C1.00006 17.1044 1.66169 19.4246 2.81772 21.4231L1.6794 27.5371L7.79343 26.3988C9.79187 27.5548 12.1121 28.2165 14.5868 28.2165Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <p>{{ character.views }}</p>                                
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            {% endblock %}
+            
