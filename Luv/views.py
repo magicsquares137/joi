@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404, JsonResponse
-from .models import Characters, Bot_Replies, User_Posts
+from .models import Characters, Bot_Replies, User_Posts, Profile
 from .forms import NewUserRequest, Bot_Feedback
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -131,3 +131,40 @@ def get_character_conversation(request, pk):
         "bot_posts": bot_posts_data,
         "user": request.user.username
     })
+
+
+from django.http import HttpResponse
+from django.views import View
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+
+
+class ProfileView(View):
+    def get(self,request,*args,**kwargs):
+        print("UPDATE")
+        print(self.request.user)
+        context = {'a':'ACCCCCOUNTTTT'}
+        return render(request, "account_settings.html",context)
+    
+    def post(self, request, *args, **kwargs):
+        user_id = self.request.user.id
+        user = User.objects.get(pk=user_id)
+        username = request.POST.get('username')
+        user.first_name = username
+
+        image = request.FILES.get('image')
+        if image:
+            file_path = 'profile_images/' + image.name
+            user.profile.main_Img.save(file_path, ContentFile(image.read()))
+
+        user.save()
+
+        return JsonResponse({"message":"updated Successfully"})
+
+class DeleteUser(View):
+    def post(self, request):
+        if request.method == "POST":
+            user = self.request.user
+            user.is_active = False
+            user.save()
+            return redirect('login')
