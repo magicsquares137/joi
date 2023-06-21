@@ -1,12 +1,28 @@
 import os
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.conf import settings
 import yaml
 
 
 with open(os.path.join(settings.BASE_DIR, "config.yml"), "r") as file:
     CONFIG = yaml.safe_load(file)
+
+
+
+class Categories(models.Model):
+    name = models.CharField(
+        max_length=CONFIG["MODEL_SETTINGS"]["Characters"]["name_length"], unique=True
+    )
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name
+
+    @classmethod
+    def get_all_categories(cls):
+        return cls.objects.all()
 
 
 class Characters(models.Model):
@@ -18,6 +34,7 @@ class Characters(models.Model):
     )
     views = models.PositiveIntegerField(default=0)
     main_Img = models.ImageField(upload_to="img/")
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Characters"
