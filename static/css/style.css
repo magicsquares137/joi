@@ -1,0 +1,944 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+}
+
+/* Theme default settings */
+:root {
+
+    /* Theme Color Settings */
+    --black: #000000;
+    --yellow: #FCDA00;
+    --white: #ffffff;
+    --grey: #777777;
+    --green: #00C01F;
+
+    /* Theme Font Family Settings */
+    --font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+
+/* Styling Start */
+button,
+a,
+p,
+select,
+input,
+span,
+li,
+textarea,
+strong {
+    font-family: var(--font-family);
+}
+
+.mt-15 {
+    margin-top: 0.781vw;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+/* Header CSS Start */
+.site-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header.site-header {
+    background-color: var(--black);
+    padding: 0.625vw 0.938vw 0.625vw 1.875vw;
+}
+
+.site-header-wrapper-ls,
+.site-header-wrapper-rs {
+    display: flex;
+    align-items: center;
+}
+
+a.site-header__logo-image-cont {
+    display: flex;
+    align-items: center;
+}
+
+a.site-header__logo-image-cont svg {
+    height: 1.875vw;
+}
+
+.site-header-search input {
+    border-radius: 50px;
+    padding: 0.260vw 0.26vw 0.260vw 0.885vw;
+    outline: none;
+    min-width: 13.177vw;
+    border: none;
+    font-size: 0.729vw;
+    line-height: 1.094vw;
+    font-weight: 300;
+    color: var(--black);
+    font-family: var(--font-family);
+}
+
+.site-header-search input::placeholder {
+    font-size: 0.729vw;
+    line-height: 1.094vw;
+    font-weight: 300;
+    color: var(--black);
+    font-family: var(--font-family);
+}
+
+/* Search CSS Start */
+.site-header-search button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0 50px 50px 0;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 0.3vw 0.729vw 0.3vw 0.3vw;
+    cursor: pointer;
+}
+
+.site-header-search {
+    position: relative;
+    margin-right: 1.042vw;
+}
+
+/* Search CSS End */
+
+/* Language CSS Start */
+.site-header-language {
+    display: flex;
+    align-items: center;
+    margin-right: 1.042vw;
+}
+
+.site-header-language svg {
+    margin-right: 0.521vw;
+}
+
+.site-header-language select {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    font-size: 0.729vw;
+    line-height: 1.094vw;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+/* Language CSS End */
+
+/* form Button CSS Start */
+button.site-btn {
+    font-size: 0.729vw;
+    line-height: 1.094vw;
+    font-weight: 400;
+    border-radius: 8px;
+    min-width: 4.688vw;
+    padding: 0.260vw;
+    cursor: pointer;
+    border: none;
+}
+
+.site-btn-white {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.site-btn-yellow {
+    background-color: var(--yellow);
+    color: var(--black);
+}
+
+/* form Button CSS End */
+
+/* Left menu CSS Start */
+
+
+.panel-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 1.563vw;
+}
+
+.vertical-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 100px;
+    background-color: var(--black);
+    padding: 3.021vw 0 3.021vw 0;
+}
+
+a.vertical-menu-itm {
+    text-decoration: none;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.302vw;
+}
+
+.left-panel {
+    margin-left: 1.042vw;
+    width: 5.5vw;
+}
+
+a.vertical-menu-itm p {
+    margin: 5px 0 0 0;
+    font-size: 0.521vw;
+    line-height: 0.781vw;
+    font-weight: 400;
+}
+
+a.vertical-menu-itm:last-child {
+    margin: 0;
+}
+
+a.vertical-menu-itm svg {
+    width: 1.146vw;
+    height: 1.146vw;
+}
+
+a.vertical-menu-itm:hover,
+a.vertical-menu-itm:hover svg path {
+    color: var(--yellow);
+    stroke: var(--yellow);
+}
+
+a.vertical-menu-itm.active svg path {
+    background-color: var(--yellow);
+    color: var(--black);
+    stroke: var(--black);
+}
+
+
+a.vertical-menu-itm.active {
+    background-color: var(--yellow);
+    color: var(--black);
+    padding: 0.521vw 0.729vw 0.417vw 0.729vw;
+    border-radius: 0.521vw;
+}
+
+/* Left menu CSS End */
+
+
+/* Category CSS Start */
+.right-panel {
+    width: 92.156vw;
+    margin-left: 1.302vw;
+}
+
+.category-filter-panel ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+a.category-filter-btn {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 0.573vw;
+    font-weight: 400;
+    line-height: 0.859vw;
+    border-radius: 0.417vw;
+    padding: 0.417vw 0.781vw;
+    box-shadow: 0 0px 6px rgb(0 0 0 / 0.2);
+}
+
+.category-filter-panel ul li {
+    display: flex;
+    align-items: center;
+    min-width: fit-content;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+a.category-filter-btn:hover {
+    color: var(--yellow);
+}
+
+a.category-filter-btn.active {
+    background-color: var(--yellow);
+    box-shadow: none;
+    color: var(--black);
+}
+
+.category-filter-panel {
+    padding-right: 4vw;
+    padding-left: 0.6vw;
+}
+
+.category-filter-panel ul .owl-nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.category-filter-panel ul .owl-nav button span {
+    font-size: 3vw;
+    line-height: 0.8;
+    font-weight: 100;
+}
+
+.category-filter-panel ul .owl-nav button.owl-next {
+    right: -1.5vw;
+    position: absolute;
+}
+
+.category-filter-panel ul .owl-nav button.owl-prev {
+    left: -1vw;
+    position: absolute;
+}
+
+button.owl-prev.disabled,
+button.owl-next.disabled {
+    display: none;
+}
+
+/* Category CSS End */
+
+
+/* Card Styling Start */
+.cards-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.category-filter-panel .owl-dots {
+    display: none;
+}
+
+.cards-container {
+    margin-top: 1.302vw;
+}
+
+.card-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 0.313vw;
+    overflow: hidden;
+    background-color: #FBFBFB;
+    box-shadow: 0 0px 6px rgb(0 0 0 / 0.2);
+}
+
+.cards-container ul li {
+    width: 100%;
+    margin: 10px 0 10px 10px;
+}
+
+.cards-container .owl-item {
+    min-width: 10.208vw;
+}
+
+.cards-container .owl-stage {
+    display: flex;
+    align-items: flex-start;
+}
+
+.cards-container .owl-stage-outer {
+    overflow: hidden;
+}
+
+.card-item-user-img {
+    width: 100%;
+    position: relative;
+}
+
+.card-item-user-img img {
+    width: 100%;
+}
+
+.new-card {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 9px;
+    font-weight: 400;
+    color: var(--white);
+    background-color: var(--green);
+    padding: 2px 8px;
+    border-radius: 3px;
+}
+
+.card-item-user-info {
+    padding: 0.521vw 0.781vw 0.625vw 0.781vw;
+}
+
+p.card-item-title {
+    margin: 0;
+    font-size: 0.729vw;
+    font-weight: 600;
+    line-height: 1.094vw;
+    color: var(--black);
+}
+
+p.card-item-description {
+    margin: 0;
+    font-size: 0.521vw;
+    line-height: 2;
+    color: var(--grey);
+}
+
+.card-item-user-info-btm {
+    display: flex;
+    align-items: center;
+    margin-top: 0.521vw;
+}
+
+.card-item-user-info-btm svg {
+    width: 10px;
+    height: 10px;
+    margin-right: 6px;
+}
+
+.card-item-user-info-btm p {
+    margin: 0;
+    font-size: 7px;
+    line-height: 10.5px;
+    font-weight: 500;
+    color: var(--yellow);
+}
+
+.cards-container ul li a {
+    text-decoration: none;
+}
+
+.cards-container .owl-dots {
+    display: none;
+}
+
+.cards-container .owl-nav button {
+    border-radius: 50px;
+    background-color: var(--yellow);
+    border: none;
+    font-size: 2vw;
+    line-height: 0;
+    font-weight: 300;
+    width: 2vw;
+    height: 2vw;
+    cursor: pointer;
+    position: absolute;
+}
+
+.cards-container .owl-nav {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+}
+
+.cards-container .owl-nav button.owl-prev {
+    left: 0;
+}
+
+.cards-container .owl-nav button.owl-next {
+    right: 0;
+}
+
+/* Hover Effect CSS */
+.card-item:hover {
+    background-color: var(--white);
+    transition: 0.1s;
+    border-color: var(--yellow);
+    border-style: solid;
+    border-width: 3px;
+}
+
+/* Card Styling End */
+
+/* Scroll Bar CSS Start */
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: var(--yellow);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--black);
+    border-radius: 50px
+}
+/* Scroll Bar CSS End */
+
+/* form Page CSS Start */
+.form-page {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.form-page-ls {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--yellow);
+}
+
+.form-page-rs {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-modal {
+    max-width: 24.167vw;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 0px 6px rgb(0 0 0 / 0.2);
+    padding: 2.188vw;
+    border-radius: 0.313vw;
+}
+
+
+.form-page-rs img {
+    width: 100%;
+    background-color: var(--yellow);
+}
+
+.form-modal-top-data {
+    text-align: center;
+}
+
+p.form-modal-top-data-title {
+    font-size: 1.146vw;
+    font-weight: 400;
+    line-height: 1.719vw;
+    margin: 0.938vw 0 0.4vw 0;
+}
+
+p.form-modal-top-data-des {
+    font-size: 0.729vw;
+    font-weight: 300;
+    line-height: 1.094vw;
+    color: var(--grey);
+    margin: 0;
+}
+
+.form-modal-btm-data {
+    margin-top: 2.448vw;
+}
+
+.form-field-container input {
+    width: -webkit-fill-available;
+    background-color: var(--white);
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 0.313vw;
+    font-size: 0.729vw;
+    font-weight: 300;
+    line-height: 1.094vw;
+    padding: 1.042vw 0.781vw;
+    outline: none;
+}
+
+
+.user-email, .user-name {
+    margin-bottom: 0.781vw;
+}
+
+.forgot-password a {
+    font-size: 0.729vw;
+    line-height: 1.094vw;
+    font-weight: 300;
+    color: var(--black);
+}
+
+.forgot-password {
+    margin-top: 0.781vw;
+}
+
+.form-cta-btn {
+    background-color: var(--black);
+    color: var(--white);
+    width: 100%;
+    font-size: 0.833vw;
+    line-height: 1.250vw;
+    padding: 0.781vw;
+    border-radius: 0.313vw;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+}
+.form-cta-btn-yellow {
+    background-color: var(--yellow);
+    color: var(--black);
+}
+
+.button-right-side {
+    margin-left: 0.521vw;
+    transition: 0.5s;
+}
+
+.form-cta-btn:hover .button-right-side {
+    margin-left: 1.2vw;
+    transition: 0.3s;
+}
+
+.button-left-side {
+    margin-right: 0.521vw;
+    transition: 0.5s;
+}
+.form-cta-btn:hover .button-left-side {
+    margin-right: 1.2vw;
+    transition: 0.3s;
+}
+
+.form-button {
+    margin-top: 1.563vw;
+}
+
+.signup-form-link p,
+.signup-form-link p a {
+    font-size: 0.729vw;
+    line-height: 1.094vw;
+    font-weight: 300;
+    color: var(--black);
+}
+
+.signup-form-link p a {
+    font-weight: 600;
+    color: var(--yellow);
+}
+
+.signup-form-link {
+    margin-top: 0.781vw;
+}
+
+hr {
+    border: 0.5px solid #77777712;
+    margin: 1.719vw 0;
+}
+
+p.form-with-account-title {
+    text-align: center;
+    font-size: 0.729vw;
+    line-height: 1.094vw;
+    color: var(--grey);
+    font-weight: 300;
+    margin: 0;
+}
+
+.form-with-account-buttons {
+    margin-top: 0.938vw;
+}
+
+.form-with-account-buttons button {
+    width: -webkit-fill-available;
+    background-color: var(--white);
+    border: none;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.781vw 1.042vw;
+    border-radius: 0.313vw;
+    margin-bottom: 0.781vw;
+    display: flex;
+    align-items: end;
+    cursor: pointer;
+}
+
+.form-with-account-buttons button svg {
+    width: 1.302vw;
+    height: 1.302vw;
+    margin-right: 0.781vw;
+}
+
+
+.form-with-account-buttons button:last-child {
+    margin: 0;
+}
+
+input:focus-visible {
+    outline: 2px solid var(--yellow);
+}
+
+.form-with-account-buttons button:hover {
+    box-shadow: 0px 0px 5px 0px rgb(252 218 0);
+}
+
+.password-eye {
+    position: absolute;
+    top: 35%;
+    right: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-password {
+    position: relative;
+}
+
+.password-eye svg {
+    width: 20px;
+}
+
+/* Reset Email CSS Start */
+
+.resent-email-img img {
+    max-width: 7.813vw;
+}
+
+.resent-email-img {
+    margin-top: 2.083vw;
+}
+span.resent-email {
+    color: var(--yellow);
+    font-weight: 500;
+}
+.form-modal svg.site-logo-svg {
+    width: 12.813vw;
+    height: 2.760vw;
+}
+/* Reset Email CSS End */
+
+/* form Page CSS End */
+
+
+/* Chat CSS Start */
+.previous-page button {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+
+
+.previous-page p {
+    color: var(--black);
+    font-size: 0.833vw;
+    line-height: 1.250vw;
+    font-weight: 500;
+    margin: 0;
+}
+
+.previous-page button:hover {
+    margin-left: 0.881vw;
+    transition: 0.5s;
+}
+
+.previous-page button svg {margin: 0 0.781vw 0 0;}
+.chat-page {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    min-height: calc(100vh - 6.2vw);
+}
+
+.chating-container {
+    width: 65.573vw;
+    margin-top: 1.406vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.model-card-container {
+    width: 23.802vw;
+}
+
+.user-chating ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li.user-chat {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.781vw 0;
+    border-top: 1px solid #F5F5F5;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.user-chat-profile {
+    width: 3.021vw;
+    height: 3.021vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-chat-profile img {
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--yellow);
+    background-color: var(--yellow);
+}
+
+.user-chat-ls {
+    margin-right: 0.781vw;
+    margin-left: 0.5vw;
+}
+
+p.user-title {
+    color: var(--black);
+    font-size: 0.833vw;
+    line-height: 1.250vw;
+    font-weight: 500;
+    margin: 0;
+}
+
+p.user-chating-text {
+    color: var(--black);
+    font-size: 0.833vw;
+    line-height: 1.250vw;
+    font-weight: 300;
+    margin: 0.2vw 0 0 0;
+}
+
+li.user-chat:first-child {
+    border: none;
+}
+.model-card-container {
+    background-color: var(--yellow);
+    min-height: 100%;
+}
+
+.model-card-data {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.model-profile {
+    margin-top: 2.969vw;
+    margin-bottom: 2.083vw;
+}
+
+.model-profile img {
+    width: 15.313vw;
+    height: 15.313vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 9px solid #FBFBFB;
+    border-radius: 50%;
+}
+
+p.model-profile-title {
+    margin: 0;
+    text-align: center;
+    font-size: 1.250vw;
+    line-height: 1.875vw;
+    font-weight: 600;
+    color: var(--black);
+}
+
+p.model-profile-para {
+    margin: 0;
+    text-align: center;
+    font-size: 0.938vw;
+    line-height: 1.406vw;
+    font-weight: 500;
+    color: var(--white);
+    margin-top: 0.5vw;
+}
+
+.model-chat-review {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.2vw;
+}
+
+.model-chat-review svg {
+    width: 1.406vw;
+    height: 1.406vw;
+    margin-right: 0.521vw;
+}
+
+.model-chat-review p {
+    color: var(--black);
+    font-size: 0.938vw;
+    line-height: 1.406vw;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Online Animation */
+.model-talk{
+    animation: avatar-online 1s infinite;
+
+}
+@keyframes avatar-online {
+  0%    {     box-shadow: 0 0px 0px 0px rgb(252 218 0); }
+  50%  {     box-shadow: 0 0px 0px 5px rgb(252 218 0); }
+  100%    {     box-shadow: 0 0px 0px 0px rgb(252 218 0); }
+}
+
+.chating-text-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 41.667vw;
+    width: 100%;
+    margin:3vw auto;
+}
+
+.chating-text-field textarea {
+    background-color: var(--white);
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 0.313vw;
+    font-size: 0.729vw;
+    font-weight: 300;
+    line-height: 1.094vw;
+    padding:1.042vw 3vw 1.042vw 0.781vw;
+    outline: none;
+    width: 100%;
+    resize: none;
+}
+
+button.sent-chat-btn {
+    position: absolute;
+    right: 1vw;
+    top: 35%;
+    background-color: transparent;
+    border: none;
+    line-height: 0;
+    cursor: pointer;
+}
+/* Chat CSS End */
+
+/* Responsive CSS Start */
+.mobile-menu {
+    display: none;
+}
+
+.desktop-menu {
+    display: flex;
+}
+
+
+@media only screen and (min-width: 1025px){
+
+.mobile-back button{
+    display: none;
+}
+}
