@@ -137,14 +137,15 @@ from django.http import HttpResponse
 from django.views import View
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import logout
 
-
-class ProfileView(View):
+class ProfileView(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
-        print("UPDATE")
-        print(self.request.user)
-        context = {'a':'ACCCCCOUNTTTT'}
-        return render(request, "account_settings.html",context)
+        profile = Profile.objects.get(user = request.user)
+
+        context = {'profile':profile}
+        return render(request, "profile.html",context)
     
     def post(self, request, *args, **kwargs):
         user_id = self.request.user.id
@@ -161,10 +162,11 @@ class ProfileView(View):
 
         return JsonResponse({"message":"updated Successfully"})
 
-class DeleteUser(View):
+class DeleteUser(LoginRequiredMixin,View):
     def post(self, request):
         if request.method == "POST":
             user = self.request.user
             user.is_active = False
             user.save()
+            logout(request)
             return redirect('login')
