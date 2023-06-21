@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404, JsonResponse
-from .models import Characters, Bot_Replies, User_Posts
+from .models import Characters, Bot_Replies, User_Posts, Categories
 from .forms import NewUserRequest, Bot_Feedback
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -9,7 +9,10 @@ import yaml
 import os
 from django.conf import settings
 from .serializers import CharactersSerializer, UserPostsSerializer, BotRepliesSerializer
-
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from django.views.generic.base import TemplateView
 
 with open(os.path.join(settings.BASE_DIR, "config.yml"), "r") as file:
     CONFIG = yaml.safe_load(file)
@@ -17,7 +20,41 @@ with open(os.path.join(settings.BASE_DIR, "config.yml"), "r") as file:
 
 def home(request):
     characters = Characters.objects.all()
-    return render(request, "home.html", {"characters": characters})
+    categories = Categories.get_all_categories()
+    data = {
+        "categories": categories,
+        "characters": characters
+    }
+    return render(request, "home.html", {"data": data})
+
+
+class search_characters(APIView):
+
+    def get(self,request):
+        characters = Characters.objects.all()
+        search_filter = request.query_params['search']
+        if filter:
+            characters = characters.filter(name=search_filter)
+        categories = Categories.get_all_categories()
+        data = {
+            "categories": categories,
+            "characters": characters
+        }
+        return render(request, "home.html", {"data": data})
+
+
+class category_view(APIView):
+    def get(self,request,category_id):
+        characters = Characters.objects.all()
+        characters = characters.filter(category_id=category_id)
+        categories = Categories.get_all_categories()
+        data = {
+            "categories": categories,
+            "characters": characters
+        }
+        return render(request, "home.html", {"data": data})
+
+
 
 @login_required
 def character_conversation(request, pk, bot_message_pk):
@@ -72,9 +109,10 @@ def character_conversation(request, pk, bot_message_pk):
                 message_form = NewUserRequest()
     else:
         message_form = NewUserRequest()
+
     return render(
         request,
-        "characters_convo.html",
+        "Chat.html",
         {"character": character, "message_form": NewUserRequest(), "posts": posts_list},
     )
 
@@ -123,6 +161,7 @@ def get_character_conversation(request, pk):
         bot_posts_data = bot_posts_serializer.data
     else:
         bot_posts_data = None
+
 
     return JsonResponse({
         "status": True,
