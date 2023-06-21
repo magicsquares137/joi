@@ -1,0 +1,617 @@
+@media only screen and (max-width: 1024px) {
+    .desktop-menu {
+        display: none;
+    }
+    
+    .mobile-menu {
+        display: flex;
+    }
+    
+/* Responsive CSS Start */
+
+/* Mobile Menu CSS Start */
+a.site-header__logo-image-cont svg {
+    width: 155px;
+    height: 33px;
+}
+
+header.site-header {
+    padding: 14px 20px;
+}
+
+.site-header-search-mobile button {
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px;
+}
+
+.site-header-language svg {
+    width: 28px;
+    height: 28px;
+    margin: 0;
+    padding: 4px 0px;
+}
+
+.site-header-language select {
+    display: none;
+}
+
+.site-header-user button {
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px;
+}
+
+.site-header-language {
+    margin-right: 0;
+}
+/* Mobile Menu CSS End */
+
+
+/* Mobile Search CSS Start */
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgb(0 0 0 / 90%);
+    overflow-y: hidden;
+    transition: 0.5s;
+  }
+  
+  .overlay-content {
+    position: relative;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .overlay a:hover,
+  .overlay a:focus {
+    color: #f1f1f1;
+  }
+  
+  .overlay .closebtn {
+    position: absolute;
+    top: 0px;
+    right: 25px;
+    font-size: 60px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .overlay {
+      overflow-y: auto;
+    }
+  
+    .overlay a {
+      font-size: 20px
+    }
+  
+    .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+    }
+  }
+  
+  #mobile-search input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--white);
+    width: 80%;
+  }
+  
+  #mobile-search input::placeholder {
+    color: var(--white);
+  }
+  
+  #mobile-search button {
+    background-color: var(--yellow);
+    border: none;
+    font-size: 16px;
+    line-height: 0;
+    padding: 12px 25px;
+    display: flex;
+    margin: 30px auto 0 auto;
+    border-radius: 6px;
+    align-items: center;
+  }
+  
+  #mobile-search button svg {
+    margin-left: 15px;
+  }
+/* Mobile Search CSS End */
+
+/* Hompage CSS Start */
+.panel-container {
+    flex-direction: column;
+    margin-top: 15px;
+  
+}
+
+.left-panel {
+    width: 100%;
+    margin: 0;
+}
+
+.vertical-menu {
+    flex-direction: row;
+    justify-content: center;
+    background-color: var(--yellow);
+    padding: 7px 0;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+a.vertical-menu-itm svg {
+    width: 16px;
+    height: 16px;
+}
+
+a.vertical-menu-itm p {
+    font-size: 8px;
+    line-height: 12px;
+    margin-top: 2px;
+    color: var(--black);
+}
+
+a.vertical-menu-itm.active {
+    padding: 5px 6px 2px 6px;
+    border-radius: 8px;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+a.vertical-menu-itm,
+a.vertical-menu-itm:last-child {
+    margin: 0 35px 0 0;
+}
+
+a.vertical-menu-itm:nth-child(1) {
+    order: 1;
+}
+
+a.vertical-menu-itm:nth-child(2) {
+    order: 3;
+}
+
+a.vertical-menu-itm:nth-child(3) {
+    order: 4;
+    margin-right: 0;
+}
+
+a.vertical-menu-itm:nth-child(4) {
+    order: 2;
+}
+
+a.vertical-menu-itm svg path {
+    stroke: var(--black);
+}
+
+a.vertical-menu-itm.active svg path {
+    stroke: var(--white);
+}
+
+a.vertical-menu-itm.active p {
+    color: var(--white);
+}
+
+.right-panel {
+    margin: 0;
+    width: 100%;
+}
+
+a.category-filter-btn {
+    font-size: 9.5px;
+    line-height: 14.25px;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.category-filter-panel ul .owl-nav button span {
+    font-size: 30px;
+}
+
+.category-filter-panel ul .owl-nav {
+    top: 15px;
+}
+
+.category-filter-panel {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.category-filter-panel ul .owl-nav button.owl-next {
+    right: -12px;
+}
+
+.category-filter-panel ul .owl-nav button.owl-prev {
+    left: -15px;
+}
+
+.category-filter-panel ul li {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.cards-container {
+    margin: 0 0 100px 0;
+}
+
+.cards-container ul li {
+    margin: 0 0 15px 0;
+}
+
+
+.cards-container ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+
+
+.card-item {
+    border-radius: 6px;
+}
+
+.card-item-user-img img {
+    max-height: 160px;
+    height: 100%;
+    object-fit: cover;
+}
+
+p.card-item-title {
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.card-item-user-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-item-user-info {
+    padding: 10px 12px 10px 12px;
+}
+
+p.card-item-description {
+    font-size: 9px;
+    line-height: 13.5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.card-item-user-info-btm p {
+    font-size: 8px;
+}
+
+.new-card {
+    top: 6px;
+    right: 6px;
+    padding: 2px 5px;
+}
+/* Hompage CSS End */
+
+/* Form CSS Start */
+.form-page-rs {
+    display: none;
+}
+
+.form-page-ls {
+    width: 100%;
+}
+
+.form-modal {
+    max-width: 375px;
+    width: 90%;
+    padding: 40px 30px 30px 30px;
+    border-radius: 6px;
+}
+
+.form-page {
+    height: 100vh;
+}
+
+.form-modal svg.site-logo-svg {
+    width: 160px;
+    height: 30px;
+}
+
+p.form-modal-top-data-title {
+    font-size: 18px;
+    line-height: 27px;
+    margin: 10px 0 5px 0;
+}
+
+p.form-modal-top-data-des {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.form-modal-btm-data {
+    margin-top: 25px;
+}
+
+.form-imputs input {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+
+.user-email,
+.user-name {
+    margin-bottom: 12px;
+}
+
+.password-eye {
+    right: 12px;
+    top: 15px;
+}
+
+.password-eye i {
+    font-size: 12px;
+}
+
+.forgot-password {
+    margin-top: 10px;
+}
+
+.forgot-password a {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.form-button {
+    margin-top: 20px;
+}
+
+.form-cta-btn, .form-cta-btn a {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 10px 0;
+    border-radius: 6px;
+}
+
+.button-right-side {
+    margin-left: 10px;
+    width: 10px;
+    height: 10px;
+}
+
+.signup-form-link {
+    margin-top: 10px;
+}
+
+.signup-form-link p,
+.signup-form-link p a {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+p.form-with-account-title {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.form-with-account-buttons {
+    margin-top: 14px;
+}
+
+.form-with-account-buttons button {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.form-with-account-buttons button svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+}
+
+p.form-modal-top-data-des br {
+    display: none;
+}
+
+.signup-form-link p a {
+    margin-left: 4px;
+}
+
+.button-left-side {
+    margin-right: 10px;
+    width: 10px;
+    height: 10px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.resent-email-img img {
+    max-width: 136px;
+}
+
+.resent-email-img {
+    margin-top: 30px;
+}
+/* Form CSS End */
+/* Chat CSS Start */
+.chat-page {
+    flex-direction: column;
+    min-height: auto;
+    margin-top: 20px;
+}
+
+.model-card-container {
+    order: -1;
+    width: 100%;
+}
+
+.chating-container {
+    width: 100%;
+    padding: 0 20px;
+    min-height: calc(100vh - 29vh);
+}
+
+.model-card-data {
+    flex-direction: row;
+    padding: 16px 20px;
+}
+
+.model-profile img {
+    width: 68px;
+    height: 68px;
+    border: 2.5px solid #FBFBFB;
+}
+
+.model-profile {
+    margin: 0 10px 0 0;
+}
+
+p.model-profile-title {
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+}
+
+
+p.model-profile-para {
+    display: none;
+}
+
+.model-chat-review svg {
+    width: 12px;
+    height: 12px;
+}
+
+.model-chat-review p {
+    font-size: 10px;
+    line-height: 15px;
+}
+
+.model-chat-review {
+    margin-top: 10px;
+}
+
+.desktop-back {
+    display: none;
+}
+
+.mobile-back button {
+    background: transparent;
+    margin-right: 10px;
+}
+
+.user-chat-profile {
+    width: 50px;
+    height: 50px;
+}
+
+.user-chat-ls {
+    margin-right: 12px;
+}
+
+p.user-title {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+p.user-chating-text {
+    font-size: 11px;
+    line-height: 18px;
+    margin: 4px 0 0 0;
+}
+
+li.user-chat {
+    padding: 20px 0;
+}
+
+@keyframes avatar-online {
+    0% {
+        box-shadow: 0 0px 0px 0px rgb(252 218 0);
+    }
+
+    50% {
+        box-shadow: 0 0px 0px 3px rgb(252 218 0);
+    }
+
+    100% {
+        box-shadow: 0 0px 0px 0px rgb(252 218 0);
+    }
+}
+
+.chating-text-field textarea {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 15px 40px 15px 15px;
+    border-radius: 6px;
+}
+
+.chating-text-field {
+    max-width: 100%;
+}
+
+button.sent-chat-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+button.sent-chat-btn {
+    top: 15px;
+}
+/* Chat CSS End */
+
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 750px){
+
+    /* Hompage Cards CSS For Tablet Start */
+.cards-container ul li {
+    width: 24%;
+}
+.cards-container ul li {
+    margin-right: 1.33%;
+}
+.cards-container ul li:nth-child(4n) {
+    margin-right: 0;
+}
+  /* Hompage Cards CSS For Tablet End */
+}
+
+@media only screen and (max-width: 749px) {
+    /* Hompage Cards CSS For Mobile Start */
+    .cards-container ul li {
+        width: 48%;
+    }
+    .cards-container ul li:nth-child(odd) {
+        margin-right: 3%;
+    }
+    /* Hompage Cards CSS For Mobile End */
+}

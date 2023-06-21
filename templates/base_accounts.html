@@ -7,11 +7,20 @@
 {% endblock %}
 
 {% block body %}
-  <div class="container">
-    <h1 class="text-center logo my-4">
-      <a href="{% url 'home' %}">Joi</a>
-    </h1>
-    {% block content %}
-    {% endblock %}
-  </div>
+<main class="main-wrapper">
+  <div class=" login-modal form-page">
+    <div class="form-page-ls">
+      {% block content %}
+      {% endblock %}
+    </div>
+    
+    <div class="form-page-rs">
+        <img  src="{% static 'img/Gallery.png'%}" alt=""/>
+    </div>
+</div>
+</main>
+
+
+
+
 {% endblock %}

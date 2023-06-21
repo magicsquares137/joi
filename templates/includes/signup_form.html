@@ -10,7 +10,7 @@
 
 {% for field in form %}
   <div class="form-group">
-    {{ field.label_tag }}
+    {% comment %} {{ field.label_tag }} {% endcomment %}
     {% render_field field class=field|input_class %}
   </div>
 {% endfor %}

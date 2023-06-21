@@ -21,6 +21,7 @@ from accounts import views as accounts_views
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
+from accounts.forms import CustomAuthForm
 
 urlpatterns = [
     re_path(r"^$", views.home, name="home"),
@@ -29,6 +30,7 @@ urlpatterns = [
         r"^login/$",
         auth_views.LoginView.as_view(template_name="login.html"),
         name="login",
+        kwargs={"authentication_form":CustomAuthForm},
     ),
     re_path(r"^logout/$", auth_views.LogoutView.as_view(), name="logout"),
     re_path(r"^api/", include("Luv.urls")),
@@ -68,8 +70,9 @@ urlpatterns = [
         ),
         name="password_reset_done",
     ),
-    re_path(
-        r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$",
+    path(
+        # r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$",
+        "reset/<uidb64>/<token>/",
         auth_views.PasswordResetConfirmView.as_view(
             template_name="password_reset_confirm.html"
         ),
