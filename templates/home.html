@@ -6,7 +6,11 @@
     <div class="category-filter-panel">
         <ul class="owl-carousel">
         {% for category in data.categories %}
+            {% if data.search_category == category.id %}
             <li><a class="category-filter-btn active" href="{% url 'Luv:category_view' category_id=category.id %}">{{ category.name }}</a></li>
+            {% else %}
+            <li><a class="category-filter-btn " href="{% url 'Luv:category_view' category_id=category.id %}">{{ category.name }}</a></li>
+            {% endif %}
         {% endfor %}
         </ul>
     </div>

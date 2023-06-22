@@ -5,7 +5,8 @@ from Luv.views import (
     search_characters,
     category_view,
     ProfileView,
-    DeleteUserView
+    DeleteUserView,
+    recent_chatpage_view
 )
 
 app_name = "Luv"
@@ -17,5 +18,6 @@ urlpatterns = [
     path('category/<int:category_id>/', category_view.as_view(), name='category_view'),
     re_path(r"^account/", ProfileView.as_view(), name="account"),
     re_path(r"^delete/", DeleteUserView.as_view(), name="delete_user"),
+    re_path(r"^chat/", recent_chatpage_view.as_view(), name="user_chats"),
 
 ]
