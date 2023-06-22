@@ -74,12 +74,20 @@
                         <option value="1">Spanish</option>
                     </select>
                 </div>
+                {% if request.user.is_authenticated %}
+                <div class="site-user-profile-icon">
+                    <a href="{% url 'Luv:account' %}">
+                    <img src="/media/profile_images/default_user.png">
+                    </a>
+                    </div>
+                {% else %}
                 <div class="site-user-btns">
                     <input class="site-btn site-btn-white" type= "button" style="float: right;" value="Log In" onClick="javascript:location.href = '{% url 'login' %}';"></input>
                     <!-- <button class="site-btn site-btn-white" type="button">Log In</button> -->
                     <input class="site-btn site-btn-yellow" type= "button" style="float: right;" value="Sign Up" onClick="javascript:location.href = '{% url 'signup' %}';"></input>
                     <!-- <button href="{% url 'signup' %}" class="site-btn site-btn-yellow" type="button">Sign Up</button> -->
                 </div>
+                {% endif %}
             </div>
         </div>
         <div class="site-header-wrapper mobile-menu">
@@ -148,6 +156,13 @@
                         <option value="1">Spanish</option>
                     </select>
                 </div>
+                {% if request.user.is_authenticated %}
+                <div class="site-user-profile-icon">
+                    <a href="{% url 'Luv:account' %}">
+                    <img src="/media/profile_images/default_user.png">
+                    </a>
+                    </div>
+                {% else %}
                 <div class="site-header-user">
                     <button type="button">
                         <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -156,6 +171,7 @@
                             </svg>
                     </button>
                 </div>
+                    {% endif%}
             </div>
         </div>
     </header>
