@@ -139,7 +139,7 @@ a.site-header__logo-image-cont svg {
 /* Language CSS End */
 
 /* form Button CSS Start */
-button.site-btn {
+.site-btn {
     font-size: 0.729vw;
     line-height: 1.094vw;
     font-weight: 400;
@@ -148,6 +148,9 @@ button.site-btn {
     padding: 0.260vw;
     cursor: pointer;
     border: none;
+}
+.site-user-btns .site-btn-white {
+    margin-left: 0.521vw;
 }
 
 .site-btn-white {
@@ -344,7 +347,7 @@ button.owl-next.disabled {
 }
 
 .cards-container .owl-item {
-    min-width: 10.208vw;
+    max-width: 10.208vw;
 }
 
 .cards-container .owl-stage {
@@ -359,10 +362,6 @@ button.owl-next.disabled {
 .card-item-user-img {
     width: 100%;
     position: relative;
-}
-
-.card-item-user-img img {
-    width: 100%;
 }
 
 .new-card {
@@ -784,15 +783,17 @@ li.user-chat {
 }
 
 .user-chat-profile {
-    width: 3.021vw;
-    height: 3.021vw;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+.user-chat-profile img {
+    width: 3.021vw;
+    height: 3.021vw;
+    object-fit: cover;
+}
 
 .user-chat-profile img {
-    width: 100%;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid var(--yellow);
@@ -909,6 +910,18 @@ p.model-profile-para {
     max-width: 41.667vw;
     width: 100%;
     margin:3vw auto;
+}
+
+form#user-entry-form {
+    width: 100%;
+}
+
+form#user-entry-form p {
+    margin: 0;
+}
+
+form#user-entry-form label {
+    display: none;
 }
 
 .chating-text-field textarea {

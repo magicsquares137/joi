@@ -1,3 +1,11 @@
+@media only screen and (min-width: 1025px) {
+.card-item-user-img img {
+    width: 10.26vw;
+    height: 10.26vw;
+    object-fit: cover;
+}
+}
+
 @media only screen and (max-width: 1024px) {
     .desktop-menu {
         display: none;
@@ -36,7 +44,7 @@ header.site-header {
     display: none;
 }
 
-.site-header-user button {
+.site-header-user button, .site-header-user a {
     background-color: transparent;
     border: none;
     padding: 5px 10px;
@@ -132,6 +140,7 @@ header.site-header {
     margin: 30px auto 0 auto;
     border-radius: 6px;
     align-items: center;
+    cursor: pointer;
   }
   
   #mobile-search button svg {
@@ -529,7 +538,7 @@ p.model-profile-para {
     margin-right: 10px;
 }
 
-.user-chat-profile {
+.user-chat-profile img {
     width: 50px;
     height: 50px;
 }
@@ -584,7 +593,7 @@ button.sent-chat-btn svg {
 }
 
 button.sent-chat-btn {
-    top: 15px;
+    top: 25px;
 }
 /* Chat CSS End */
 

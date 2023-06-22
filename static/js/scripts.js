@@ -1,11 +1,4 @@
-// Filter Category JS
-$('.owl-carousel').owlCarousel({
-    margin:15,
-    loop:false,
-    autoWidth:true,
-    items:1,
-    nav:true,
-});
+
 
 // Cards Slider JS
 function isSmallScreen() {
@@ -44,18 +37,25 @@ handleResize();
 // Pass Eye add html
 
 // Show and hide eye
-$(document).ready(function() {
-
-  $('input[type="password"]').after('<div class="password-eye"><i class="fa-solid fa-eye eye"></i></div>');
-
-    $('.eye').click(function() {
-      $(this).toggleClass('fa-eye-slash');
-      var passwordInput = $('.passwordShow');
-      var type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
-      passwordInput.attr('type', type);
-    });
+$(document).ready(function () {
+  $('#id_password1').addClass('pass-field');
+  $('#id_password').addClass('pass-field');
+  $('.pass-field').after('<div class="password-eye"><i class="fa-solid fa-eye eye"></i></div>');
+  $('.eye').click(function () {
+    $(this).toggleClass('fa-eye-slash');
+    var passwordInput = $('.pass-field');
+    var type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
+    passwordInput.attr('type', type);
   });
+});
  
+
+// Chat Textarea js
+$(document).ready(function () {
+$('textarea#id_message').attr('placeholder', 'Type a message').removeAttr('cols').removeAttr('rows').removeAttr('maxlength');
+});
+
+
 
 
 // Search Pop
@@ -65,3 +65,13 @@ $(document).ready(function() {
   function closeNav() {
     document.getElementById("mobile-search").style.height = "0%";
   }
+
+
+  // Filter Category JS
+$('.owl-carousel').owlCarousel({
+  margin:15,
+  loop:false,
+  autoWidth:true,
+  items:1,
+  nav:true,
+});

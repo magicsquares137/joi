@@ -3,7 +3,7 @@
             {% block inpage %}
             <div class="right-panel">
               <div class="previous-page desktop-back">
-                <button type="button">
+                <button type="button" class="go-previous" onclick="history.back()" >
                 <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="14.2884" cy="14.2891" r="14.2885" transform="rotate(-180 14.2884 14.2891)" fill="#FCDA00"/>
                     <path d="M16.3547 6.66839L9.9956 13.0276C9.24459 13.7786 9.24459 15.0075 9.9956 15.7585L16.3547 22.1177" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -23,9 +23,9 @@
                             <div class="user-chat-profile">
                                 {% if post.non_bot == 'user' %}
                                     {% if profile.main_Img %}
-                                        <img class="model-talk" src="{{ profile.main_Img.url }}"/>
+                                        <img   src="{{ profile.main_Img.url }}"/>
                                     {% else %}
-                                        <img class="model-talk" src="/media/profile_images/default_user.png"/>
+                                        <img  src="/media/profile_images/default_user.png"/>
                                     {% endif %}
                                 {% else %}
                                 <img class="model-talk" src="{{ character.main_Img.url }}"/>
