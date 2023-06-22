@@ -1,12 +1,41 @@
 import os
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.conf import settings
 import yaml
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 with open(os.path.join(settings.BASE_DIR, "config.yml"), "r") as file:
     CONFIG = yaml.safe_load(file)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    main_Img = models.ImageField(upload_to="profile_images/", null=True, blank=True)
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+class Categories(models.Model):
+    name = models.CharField(
+        max_length=CONFIG["MODEL_SETTINGS"]["Characters"]["name_length"], unique=True
+    )
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name
+
+    @classmethod
+    def get_all_categories(cls):
+        return cls.objects.all()
 
 
 class Characters(models.Model):
@@ -18,6 +47,7 @@ class Characters(models.Model):
     )
     views = models.PositiveIntegerField(default=0)
     main_Img = models.ImageField(upload_to="img/")
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Characters"

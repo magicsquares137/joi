@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404, JsonResponse
-from .models import Characters, Bot_Replies, User_Posts
+from .models import Characters, Bot_Replies, User_Posts, Categories, Profile
 from .forms import NewUserRequest, Bot_Feedback
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -9,6 +9,17 @@ import yaml
 import os
 from django.conf import settings
 from .serializers import CharactersSerializer, UserPostsSerializer, BotRepliesSerializer
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from django.views.generic.base import TemplateView
+from django.http import HttpResponse
+from django.views import View
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import logout
+
 
 
 with open(os.path.join(settings.BASE_DIR, "config.yml"), "r") as file:
@@ -17,7 +28,41 @@ with open(os.path.join(settings.BASE_DIR, "config.yml"), "r") as file:
 
 def home(request):
     characters = Characters.objects.all()
-    return render(request, "home.html", {"characters": characters})
+    categories = Categories.get_all_categories()
+    data = {
+        "categories": categories,
+        "characters": characters
+    }
+    return render(request, "home.html", {"data": data})
+
+
+class search_characters(APIView):
+
+    def get(self,request):
+        characters = Characters.objects.all()
+        search_filter = request.query_params['search']
+        if filter:
+            characters = characters.filter(name=search_filter)
+        categories = Categories.get_all_categories()
+        data = {
+            "categories": categories,
+            "characters": characters
+        }
+        return render(request, "home.html", {"data": data})
+
+
+class category_view(APIView):
+    def get(self,request,category_id):
+        characters = Characters.objects.all()
+        characters = characters.filter(category_id=category_id)
+        categories = Categories.get_all_categories()
+        data = {
+            "categories": categories,
+            "characters": characters
+        }
+        return render(request, "home.html", {"data": data})
+
+
 
 @login_required
 def character_conversation(request, pk, bot_message_pk):
@@ -34,6 +79,7 @@ def character_conversation(request, pk, bot_message_pk):
     character = get_object_or_404(Characters, pk=pk)
     user_posts = User_Posts.objects.filter(created_by=request.user, character__pk=pk)
     bot_posts = Bot_Replies.objects.filter(created_by=request.user, character__pk=pk)
+    profile = Profile.objects.get(user=request.user)
 
     if bot_posts.count() == 0:
         message = "hello"
@@ -72,10 +118,11 @@ def character_conversation(request, pk, bot_message_pk):
                 message_form = NewUserRequest()
     else:
         message_form = NewUserRequest()
+
     return render(
         request,
-        "characters_convo.html",
-        {"character": character, "message_form": NewUserRequest(), "posts": posts_list},
+        "Chat.html",
+        {"profile":profile,"character": character, "message_form": NewUserRequest(), "posts": posts_list},
     )
 
 
@@ -110,7 +157,7 @@ def get_character_conversation(request, pk):
     character = get_object_or_404(Characters, pk=pk)
     user_posts = User_Posts.objects.filter(created_by=request.user, character__pk=pk)
     bot_posts = Bot_Replies.objects.filter(created_by=request.user, character__pk=pk).order_by('-post_date')
-
+    profile = Profile.objects.get(user=request.user)
     character_serializer = CharactersSerializer(character)
     character_data = character_serializer.data
 
@@ -124,10 +171,49 @@ def get_character_conversation(request, pk):
     else:
         bot_posts_data = None
 
+    if profile.main_Img:
+        profile_image = profile.main_Img.url
+    else:
+        profile_image = '/media/profile_images/default_user.png'
+
+
     return JsonResponse({
         "status": True,
         "character": character_data,
         "user_posts": user_posts_data[-1],
         "bot_posts": bot_posts_data,
-        "user": request.user.username
+        "user": request.user.username,
+        "profile_image":profile_image
     })
+
+
+class ProfileView(LoginRequiredMixin,View):
+    def get(self,request,*args,**kwargs):
+        profile = Profile.objects.get(user = request.user)
+
+        context = {'profile':profile}
+        return render(request, "profile.html",context)
+
+    def post(self, request, *args, **kwargs):
+        user_id = self.request.user.id
+        user = User.objects.get(pk=user_id)
+        username = request.POST.get('username')
+        user.first_name = username
+
+        image = request.FILES.get('image')
+        if image:
+            file_path = 'profile_images/' + image.name
+            user.profile.main_Img.save(file_path, ContentFile(image.read()))
+
+        user.save()
+
+        return JsonResponse({"message":"updated Successfully"})
+
+class DeleteUserView(LoginRequiredMixin,View):
+    def post(self, request):
+        if request.method == "POST":
+            user = self.request.user
+            user.is_active = False
+            user.save()
+            logout(request)
+            return redirect('login')
