@@ -79,6 +79,7 @@ def character_conversation(request, pk, bot_message_pk):
     character = get_object_or_404(Characters, pk=pk)
     user_posts = User_Posts.objects.filter(created_by=request.user, character__pk=pk)
     bot_posts = Bot_Replies.objects.filter(created_by=request.user, character__pk=pk)
+    profile = Profile.objects.get(user=request.user)
 
     if bot_posts.count() == 0:
         message = "hello"
@@ -121,7 +122,7 @@ def character_conversation(request, pk, bot_message_pk):
     return render(
         request,
         "Chat.html",
-        {"character": character, "message_form": NewUserRequest(), "posts": posts_list},
+        {"profile":profile,"character": character, "message_form": NewUserRequest(), "posts": posts_list},
     )
 
 
@@ -156,7 +157,7 @@ def get_character_conversation(request, pk):
     character = get_object_or_404(Characters, pk=pk)
     user_posts = User_Posts.objects.filter(created_by=request.user, character__pk=pk)
     bot_posts = Bot_Replies.objects.filter(created_by=request.user, character__pk=pk).order_by('-post_date')
-
+    profile = Profile.objects.get(user=request.user)
     character_serializer = CharactersSerializer(character)
     character_data = character_serializer.data
 
@@ -170,13 +171,19 @@ def get_character_conversation(request, pk):
     else:
         bot_posts_data = None
 
+    if profile.main_Img:
+        profile_image = profile.main_Img.url
+    else:
+        profile_image = '/media/profile_images/default_user.png'
+
 
     return JsonResponse({
         "status": True,
         "character": character_data,
         "user_posts": user_posts_data[-1],
         "bot_posts": bot_posts_data,
-        "user": request.user.username
+        "user": request.user.username,
+        "profile_image":profile_image
     })
 
 

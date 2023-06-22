@@ -22,7 +22,11 @@
                         <div class="user-chat-ls">
                             <div class="user-chat-profile">
                                 {% if post.non_bot == 'user' %}
-                                <img class="model-talk" src="assets/image 1.png"/>
+                                    {% if profile.main_Img %}
+                                        <img class="model-talk" src="{{ profile.main_Img.url }}"/>
+                                    {% else %}
+                                        <img class="model-talk" src="/media/profile_images/default_user.png"/>
+                                    {% endif %}
                                 {% else %}
                                 <img class="model-talk" src="{{ character.main_Img.url }}"/>
                                 {% endif %}
