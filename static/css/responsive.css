@@ -1,20 +1,11 @@
-@media only screen and (min-width: 1025px) {
-.card-item-user-img img {
-    width: 10.26vw;
-    height: 10.26vw;
-    object-fit: cover;
-}
-}
-
 @media only screen and (max-width: 1024px) {
     .desktop-menu {
         display: none;
     }
-    
+
     .mobile-menu {
         display: flex;
     }
-    
 /* Responsive CSS Start */
 
 /* Mobile Menu CSS Start */
@@ -596,6 +587,182 @@ button.sent-chat-btn {
     top: 25px;
 }
 /* Chat CSS End */
+
+/* Logi Header */
+.site-user-profile-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.site-user-profile-icon a {
+    margin-left: 8px;
+}
+
+/* Profile CSS Start */
+.profile-settings-sec {
+    flex-direction: column;
+}
+
+.profile-card-container {
+    width: 100%;
+}
+
+.profile-image img {
+    width: 135px;
+    height: 135px;
+    border: 4px solid #FBFBFB;
+}
+
+.profile-image {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+p.profile-title {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+p.profile-email {
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.profile-logout-btn {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 10px;
+    max-width: 109px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.profile-logout-btn svg {
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+}
+
+.site-theme-mode {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.site-theme-mode p {
+    display: none;
+}
+
+p.profile-prev-txt {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.profile-back-mobile {
+    display: block;
+}
+
+.profile-settings-rs {
+    padding: 20px;
+}
+
+.profile-form-field label {
+    font-size: 14px;
+    line-height: 21px;
+}
+
+span.form-short-des {
+    font-size: 8px;
+    line-height: 12px;
+    margin-bottom: 10px;
+}
+
+.profile-form-field input {
+    width: 100%;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+
+.profile-settings-form {
+    margin-top: 20px;
+}
+
+.profile-form-field {
+    margin-bottom: 20px;
+}
+
+.profile-info-action-buttons button {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 10px 12px;
+    border-radius: 6px;
+}
+
+button.remove-account-btn svg {
+    width: 15px;
+    height: 15px;
+}
+
+.profile-back-desktop svg {
+    display: none;
+}
+
+.profile-back-mobile {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+.profile-back-mobile button {
+    background: var(--yellow);
+}
+
+.profile-back-mobile p {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.profile-back-mobile button svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+input[type="file"]::file-selector-button {
+    border-radius: 0.313vw 0 0 0.313vw;
+    height: 36px;
+    width: 98px;
+    font-size: 12px;
+    line-height: 18px;
+    margin-right: 20px;
+}
+
+.site-theme-mode-toggle .checkbox:checked+.checkbox-label .ball {
+    transform: translateX(36px);
+}
+
+.site-theme-mode-toggle .checkbox-label {
+    width: 70px;
+    height: 32px;
+    padding: 10px;
+}
+
+.site-theme-mode-toggle .checkbox-label .ball {
+    width: 23px;
+    height: 23px;
+    top: 5px;
+    left: 5px;
+}
+
+.site-theme-mode-toggle .checkbox-label svg {
+    width: 15px;
+    height: 15px;
+}
+/* Profile CSS End */
 
 }
 
