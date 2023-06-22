@@ -57,7 +57,7 @@
                         <div class="site-theme-mode">
                             <p>Dark Mode</p>
                             <div class="site-theme-mode-toggle">
-                                <input type="checkbox" class="checkbox" id="checkbox">
+                                <input type="checkbox" class="checkbox" id="site-theme-mode" checked>
                                 <label for="checkbox" class="checkbox-label">
                                     <svg class="moon-svg" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1.38062 6.57985C1.38062 10.2134 4.10801 13.159 7.47242 13.159C9.86432 13.159 11.9342 11.6702 12.931 9.50392C7.47242 9.50392 4.76495 6.57985 4.76495 0.68457C2.7591 1.76114 1.38062 3.99664 1.38062 6.57985Z" stroke="white" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -117,9 +117,7 @@
                         </div>
                         <div class="profile-info-action-buttons">
                             <button onclick="send_data()" type="button" class="update-info-btn">Update Profile</button>
-                            <button type="button">
-                                <a href="{% url 'password_change' %}">Change Password</a>
-                            </button>
+                            <a class="change-pass-btn" href="{% url 'password_change' %}">Change Password</a>
                             <button onclick="deleteUser()" type="button" class="remove-account-btn">Remove Account
                                 <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19.6539 5.62131C19.6334 5.62131 19.6026 5.62131 19.5718 5.62131C14.1454 5.07764 8.72922 4.87249 3.36431 5.41615L1.2717 5.62131C0.840869 5.66234 0.461327 5.35461 0.420296 4.92378C0.379264 4.49294 0.687001 4.12366 1.10757 4.08263L3.20018 3.87747C8.65741 3.32355 14.1864 3.53896 19.7257 4.08263C20.1463 4.12366 20.454 4.5032 20.413 4.92378C20.3822 5.32383 20.0437 5.62131 19.6539 5.62131Z" fill="white"/>

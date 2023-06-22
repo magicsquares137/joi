@@ -461,6 +461,14 @@ p.form-modal-top-data-des br {
 .resent-email-img {
     margin-top: 30px;
 }
+form.form-imputs ul li {
+    font-size: 9px;
+}
+
+form.form-imputs ul {
+    padding-left: 15px;
+    margin: 20px 0;
+}
 /* Form CSS End */
 /* Chat CSS Start */
 .chat-page {
@@ -700,8 +708,14 @@ span.form-short-des {
     line-height: 18px;
     padding: 10px 12px;
     border-radius: 6px;
+    margin-bottom: 10px;
 }
-
+a.change-pass-btn {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 10px 12px;
+    border-radius: 6px;
+}
 button.remove-account-btn svg {
     width: 15px;
     height: 15px;
