@@ -242,86 +242,97 @@
     </script>
     <script>
         $(document).ready(function() {
-          // AJAX call to retrieve bot replies
-          $('#user-entry-form').submit(function(event) {
-            event.preventDefault();
-      
-            // Get the form data
-            var formData = $(this).serialize();
-      
-            // Get the base URL
-            var baseUrl = window.location.protocol + "//" + window.location.host;
-            var charpk = {{ character.pk }};
-      
-            // Construct the URL for the AJAX call
-            var url = baseUrl + '/api/get_character_conversation/' + charpk + '/';
-            console.log("formData",formData);
-            // Make the AJAX call
-            $.ajax({
-              type: 'POST',
-              url: url,
-              data: formData,
-              success: function(response) {
-                // Clear the textarea after submitting
-                $('#user-entry-form textarea').val('');
-      
-                // Handle the successful response
-                console.log("response====", response);
-      
-                // Construct the HTML for the new post
-                var postHtml = '<li class="user-chat ">' +
-                  '<div class="user-chat-ls">' +
-                  '<div class="user-chat-profile">' +
-                  '<img class="model-talk" src="' + response.profile_image + '"/>' +
-                  '</div>' +
-                  '</div>' +
-                  '<div class="user-chat-rs">' +
-                  '<div class="user-chat-data">' +
-                  '<p class="user-title">' + response.user + '</p>' +
-                  '<p class="user-chating-text">' +
-                  response.user_posts.message + '</p>' +
-                  '</div>' +
-                  '</div>' +
-                  '</li>';
-      
-                // Append the new post to the conversation
-                $('#user-chating-list').append(postHtml);
-      
-                // Display the "Thinking" message
-                $('#user-chating-list').append('<p id="bot-think">' + response.bot_posts.character.name + ' is Thinking...</p>');
-      
-                // Simulate delay for the "Thinking" message
-                setTimeout(function() {
-                  // Remove the "Thinking" message
-                  $('#bot-think').remove();
-      
-                  // Construct the HTML for the bot's response
-                  var botHtml = '<li class="user-chat ">' +
-                  '<div class="user-chat-ls">' +
-                  '<div class="user-chat-profile">' +
-                  '<img class="model-talk" src="' + response.bot_posts.character.main_Img +'"/>' +
-                  '</div>' +
-                  '</div>' +
-                  '<div class="user-chat-rs">' +
-                  '<div class="user-chat-data">' +
-                  '<p class="user-title">' + response.bot_posts.character.name + '</p>' +
-                  '<p class="user-chating-text">' +
-                  response.bot_posts.message + '</p>' +
-                  '</div>' +
-                  '</div>' +
-                  '</li>';
-                  
-                  // Append the bot's response to the conversation
-                  $('#user-chating-list').append(botHtml);
-                }, 1000)
-              },
-              error: function(xhr, textStatus, errorThrown) {
-                // Handle any errors that occur during the AJAX request
-                console.log(errorThrown);
+            // AJAX call to retrieve bot replies
+            $('#user-entry-form').submit(function(event) {
+              event.preventDefault();
+          
+              // Get the form data
+              var formData = $(this).serialize();
+          
+              // Get the base URL
+              var baseUrl = window.location.protocol + "//" + window.location.host;
+              var charpk = {{ character.pk }};
+          
+              // Construct the URL for the AJAX call
+              var url = baseUrl + '/api/get_character_conversation/' + charpk + '/';
+              console.log("formData", formData);
+              // Make the AJAX call
+              if ($('#user-entry-form textarea').val()  != '' ){
+              $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                success: function(response) {
+                  // Clear the textarea after submitting
+                  $('#user-entry-form textarea').val('');
+          
+                  // Handle the successful response
+                  console.log("response====", response);
+          
+                  // Construct the HTML for the new post
+                  var postHtml = '<li class="user-chat ">' +
+                    '<div class="user-chat-ls">' +
+                    '<div class="user-chat-profile">' +
+                    '<img class="model-talk" src="' + response.profile_image + '"/>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="user-chat-rs">' +
+                    '<div class="user-chat-data">' +
+                    '<p class="user-title">' + response.user + '</p>' +
+                    '<p class="user-chating-text">' +
+                    response.user_posts.message + '</p>' +
+                    '</div>' +
+                    '</div>' +
+                    '</li>';
+          
+                  // Append the new post to the conversation
+                  $('#user-chating-list').append(postHtml);
+          
+                  // Display the "Thinking" message
+                  $('#user-chating-list').append('<p id="bot-think">' + response.bot_posts.character.name + ' is Thinking...</p>');
+          
+                  // Simulate delay for the "Thinking" message
+                  setTimeout(function() {
+                    // Remove the "Thinking" message
+                    $('#bot-think').remove();
+          
+                    // Construct the HTML for the bot's response
+                    var botHtml = '<li class="user-chat ">' +
+                      '<div class="user-chat-ls">' +
+                      '<div class="user-chat-profile">' +
+                      '<img class="model-talk" src="' + response.bot_posts.character.main_Img + '"/>' +
+                      '</div>' +
+                      '</div>' +
+                      '<div class="user-chat-rs">' +
+                      '<div class="user-chat-data">' +
+                      '<p class="user-title">' + response.bot_posts.character.name + '</p>' +
+                      '<p class="user-chating-text">' +
+                      response.bot_posts.message + '</p>' +
+                      '</div>' +
+                      '</div>' +
+                      '</li>';
+          
+                    // Append the bot's response to the conversation
+                    $('#user-chating-list').append(botHtml);
+                  }, 1000)
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                  // Handle any errors that occur during the AJAX request
+                  console.log(errorThrown);
+                }
+              })
+            }
+            });
+          
+            // Submit the form when Enter key is pressed
+            $('#user-entry-form textarea').keypress(function(event) {
+              if (event.which == 13 && !event.shiftKey) {
+                event.preventDefault();
+                $('#user-entry-form').submit();
               }
-            })
-          })
-        })
+            });
+          });
+          
       </script>
     
 </body>
