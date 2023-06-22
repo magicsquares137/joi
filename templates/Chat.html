@@ -11,7 +11,7 @@
                     <a style="text-decoration: none" href="javascript:history.back()">
                     <p>Back</p>
                     </a>
-                </button>             
+                </button>
               </div>
               <div class="chat-page">
               <div class="chating-container">
@@ -48,7 +48,7 @@
                     {% endfor %}
                 </ul>
                 </div>
-                
+
                 <div class="chating-text-field">
                     <form method="post" novalidate id="user-entry-form">
                         {% csrf_token %}
@@ -64,7 +64,7 @@
                             </svg>
                         </button>
                       </form>
-                </div> 
+                </div>
               </div>
               <div class="model-card-container">
                 <div class="model-card-data">
@@ -72,8 +72,8 @@
                         <button type="button">
                             <svg width="8" height="16" viewBox="0 0 8 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7 1.60929L1.4882 7.12112C0.837266 7.77205 0.837266 8.83722 1.4882 9.48816L7 15" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>                                     
-                        </button>             
+                                </svg>
+                        </button>
                       </div>
                     <div class="model-profile">
                         <img src="{{ character.main_Img.url }}" alt=""/>
@@ -87,11 +87,10 @@
                                 <path d="M9.15198 17.3467H11.8693H14.5867" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M14.5868 28.2165C22.0905 28.2165 28.1735 22.1334 28.1735 14.6297C28.1735 7.12596 22.0905 1.04297 14.5868 1.04297C7.08305 1.04297 1.00006 7.12596 1.00006 14.6297C1.00006 17.1044 1.66169 19.4246 2.81772 21.4231L1.6794 27.5371L7.79343 26.3988C9.79187 27.5548 12.1121 28.2165 14.5868 28.2165Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <p>{{ character.views }}</p>                                
+                                <p><span id="character-views">{{ character.views }}</span></p>
                         </div>
                     </div>
                 </div>
               </div>
             </div>
             {% endblock %}
-            

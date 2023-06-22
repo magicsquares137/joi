@@ -122,9 +122,9 @@
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8.00801 16.219C3.59465 16.219 0.00146484 12.6258 0.00146484 8.21242C0.00146484 3.79905 3.59465 0.205872 8.00801 0.205872C12.4214 0.205872 16.0146 3.79905 16.0146 8.21242C16.0146 12.6258 12.4214 16.219 8.00801 16.219ZM8.00801 1.37756C4.23517 1.37756 1.17315 4.44739 1.17315 8.21242C1.17315 11.9774 4.23517 15.0473 8.00801 15.0473C11.7809 15.0473 14.8429 11.9774 14.8429 8.21242C14.8429 4.44739 11.7809 1.37756 8.00801 1.37756Z" fill="#FBFBFB"/>
                                 <path d="M16.2101 17C16.0617 17 15.9133 16.9453 15.7961 16.8282L14.2339 15.2659C14.0073 15.0394 14.0073 14.6645 14.2339 14.4379C14.4604 14.2114 14.8353 14.2114 15.0619 14.4379L16.6241 16.0002C16.8506 16.2267 16.8506 16.6017 16.6241 16.8282C16.5069 16.9453 16.3585 17 16.2101 17Z" fill="#FBFBFB"/>
-                                </svg>                                
+                                </svg>
                         </button>
-                 
+
                     </form>
                 </div>
                 <div class="site-header-language">
@@ -153,7 +153,7 @@
                         <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.97976 8.4233C10.072 8.4233 11.7681 6.72719 11.7681 4.63494C11.7681 2.54269 10.072 0.846588 7.97976 0.846588C5.88751 0.846588 4.19141 2.54269 4.19141 4.63494C4.19141 6.72719 5.88751 8.4233 7.97976 8.4233Z" stroke="#FBFBFB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M14.4877 16C14.4877 13.0678 11.5707 10.6963 7.97933 10.6963C4.38798 10.6963 1.47095 13.0678 1.47095 16" stroke="#FBFBFB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>                            
+                            </svg>
                     </button>
                 </div>
             </div>
@@ -245,14 +245,14 @@
             // AJAX call to retrieve bot replies
             $('#user-entry-form').submit(function(event) {
               event.preventDefault();
-          
+
               // Get the form data
               var formData = $(this).serialize();
-          
+
               // Get the base URL
               var baseUrl = window.location.protocol + "//" + window.location.host;
               var charpk = {{ character.pk }};
-          
+
               // Construct the URL for the AJAX call
               var url = baseUrl + '/api/get_character_conversation/' + charpk + '/';
               console.log("formData", formData);
@@ -265,10 +265,8 @@
                 success: function(response) {
                   // Clear the textarea after submitting
                   $('#user-entry-form textarea').val('');
-          
-                  // Handle the successful response
-                  console.log("response====", response);
-          
+                  $('#character-views').text(response.views);
+
                   // Construct the HTML for the new post
                   var postHtml = '<li class="user-chat ">' +
                     '<div class="user-chat-ls">' +
@@ -284,18 +282,18 @@
                     '</div>' +
                     '</div>' +
                     '</li>';
-          
+
                   // Append the new post to the conversation
                   $('#user-chating-list').append(postHtml);
-          
+
                   // Display the "Thinking" message
                   $('#user-chating-list').append('<p id="bot-think">' + response.bot_posts.character.name + ' is Thinking...</p>');
-          
+
                   // Simulate delay for the "Thinking" message
                   setTimeout(function() {
                     // Remove the "Thinking" message
                     $('#bot-think').remove();
-          
+
                     // Construct the HTML for the bot's response
                     var botHtml = '<li class="user-chat ">' +
                       '<div class="user-chat-ls">' +
@@ -311,7 +309,7 @@
                       '</div>' +
                       '</div>' +
                       '</li>';
-          
+
                     // Append the bot's response to the conversation
                     $('#user-chating-list').append(botHtml);
                   }, 1000)
@@ -323,7 +321,7 @@
               })
             }
             });
-          
+
             // Submit the form when Enter key is pressed
             $('#user-entry-form textarea').keypress(function(event) {
               if (event.which == 13 && !event.shiftKey) {
@@ -332,9 +330,9 @@
               }
             });
           });
-          
+
       </script>
-    
+
 </body>
 
 </html>
