@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="chating-text-field">
-                    <form method="post" novalidate id="user-entry-form">
+                    {% comment %} <form method="post" novalidate id="user-entry-form">
                         {% csrf_token %}
                         {{ message_form.as_p }}
                         {% include 'includes/form.html' %}
@@ -63,7 +63,20 @@
                                     fill="#FCDA00"></path>
                             </svg>
                         </button>
-                      </form>
+                      </form> {% endcomment %}
+                      <form method="post" novalidate id="user-entry-form">
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            <input type="text" id="message" name="message" class="form-control" required>
+                        </div>                        
+                        <input type="hidden" name="form_type" value="user_entry">
+                        <button class="sent-chat-btn" type="submit">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.7822 6.15478L7.2182 1.37278C0.793788 -1.84501 -1.84301 0.791788 1.37478 7.2162L2.34682 9.16032C2.62614 9.73014 2.62614 10.3893 2.34682 10.9592L1.37478 12.8921C-1.84301 19.3165 0.782615 21.9533 7.2182 18.7355L16.7822 13.9535C21.0726 11.8083 21.0726 8.30001 16.7822 6.15478ZM13.1734 10.8921H7.13999C6.6819 10.8921 6.30202 10.5122 6.30202 10.0542C6.30202 9.59606 6.6819 9.21618 7.13999 9.21618H13.1734C13.6315 9.21618 14.0113 9.59606 14.0113 10.0542C14.0113 10.5122 13.6315 10.8921 13.1734 10.8921Z" fill="#FCDA00"></path>
+                            </svg>
+                        </button>
+                        </form>
                 </div>
               </div>
               <div class="model-card-container">

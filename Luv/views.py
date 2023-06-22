@@ -20,6 +20,7 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout
+from django.db.models import Q
 
 
 
@@ -30,9 +31,11 @@ with open(os.path.join(settings.BASE_DIR, "config.yml"), "r") as file:
 def home(request):
     characters = Characters.objects.all()
     categories = Categories.get_all_categories()
+    search_category = None
     data = {
         "categories": categories,
-        "characters": characters
+        "characters": characters,
+        "search_category":search_category
     }
     return render(request, "home.html", {"data": data})
 
@@ -41,13 +44,16 @@ class search_characters(APIView):
 
     def get(self,request):
         characters = Characters.objects.all()
-        search_filter = request.query_params['search']
-        if filter:
-            characters = characters.filter(name=search_filter)
+        if request.query_params['search']:
+            search_filter = request.query_params['search']
+            # characters = characters.filter(name=search_filter)
+            characters = characters.filter(Q(name__icontains=search_filter))
         categories = Categories.get_all_categories()
+        search_category = None
         data = {
             "categories": categories,
-            "characters": characters
+            "characters": characters,
+            "search_category":search_category
         }
         return render(request, "home.html", {"data": data})
 
@@ -57,9 +63,11 @@ class category_view(APIView):
         characters = Characters.objects.all()
         characters = characters.filter(category_id=category_id)
         categories = Categories.get_all_categories()
+        search_category = category_id
         data = {
             "categories": categories,
-            "characters": characters
+            "characters": characters,
+            "search_category":search_category
         }
         return render(request, "home.html", {"data": data})
 
@@ -69,7 +77,7 @@ class recent_chatpage_view(APIView):
     def get(self,request):
         queryset = User_Posts.objects.filter(created_by=request.user).order_by('-post_date')
         characters = [i.character for i in queryset]
-        characters_unique = list(set(characters))
+        characters_unique = list(dict.fromkeys(characters))
         # characters = characters.filter(category_id=category_id)
         categories = Categories.get_all_categories()
         data = {
