@@ -4,6 +4,7 @@ from .models import Characters, Bot_Replies, User_Posts, Categories, Profile
 from .forms import NewUserRequest, Bot_Feedback
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from itertools import chain
 import yaml
 import os
@@ -62,6 +63,20 @@ class category_view(APIView):
         }
         return render(request, "home.html", {"data": data})
 
+@method_decorator(login_required, name='dispatch')
+class recent_chatpage_view(APIView):
+    
+    def get(self,request):
+        queryset = User_Posts.objects.filter(created_by=request.user).order_by('-post_date')
+        characters = [i.character for i in queryset]
+        characters_unique = list(set(characters))
+        # characters = characters.filter(category_id=category_id)
+        categories = Categories.get_all_categories()
+        data = {
+            "categories": categories,
+            "characters": characters_unique
+        }
+        return render(request, "home.html", {"data": data})
 
 
 @login_required
