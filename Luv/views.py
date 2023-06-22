@@ -183,7 +183,8 @@ def get_character_conversation(request, pk):
         "user_posts": user_posts_data[-1],
         "bot_posts": bot_posts_data,
         "user": request.user.username,
-        "profile_image":profile_image
+        "profile_image":profile_image,
+        "views": character.views
     })
 
 
