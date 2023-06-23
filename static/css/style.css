@@ -98,6 +98,7 @@ a.site-header__logo-image-cont svg {
 .site-header-search button {
     position: absolute;
     right: 0;
+    height: 100%;
     top: 0;
     border-radius: 0 50px 50px 0;
     display: flex;
@@ -107,6 +108,10 @@ a.site-header__logo-image-cont svg {
     border: none;
     padding: 0.3vw 0.729vw 0.3vw 0.3vw;
     cursor: pointer;
+}
+.site-header-search button svg {
+    width: 0.885vw;
+    height: 0.885vw;
 }
 
 .site-header-search {
