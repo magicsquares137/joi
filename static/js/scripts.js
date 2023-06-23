@@ -79,7 +79,7 @@ $(document).ready(function () {
 });
 
 var chatUrl = $("#chat-page-url")
-if(window.location.href.includes('chat')){
+if(window.location.href.includes('chat') || window.location.href.includes('characters')){
   $("a.vertical-menu-itm").removeClass('active');
   $(chatUrl).addClass('active');
   }
