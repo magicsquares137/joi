@@ -41,7 +41,9 @@ $(document).ready(function () {
 
   // Placeholder Js
   $('#id_username').attr('placeholder', 'Username');
-  
+  $('#id_old_password').attr('placeholder', 'Old Password');
+  $('#id_new_password1').attr('placeholder', 'New Password');
+  $('#id_new_password2').attr('placeholder', 'Confirm Password');
   });
   
   // Form Password Eye
