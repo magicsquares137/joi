@@ -606,6 +606,8 @@ form.form-imputs ul li {
 .button-right-side {
     margin-left: 0.521vw;
     transition: 0.5s;
+    height: 0.625vw;
+    width: 0.313vw;
 }
 
 .form-cta-btn:hover .button-right-side {
@@ -751,6 +753,8 @@ span.resent-email {
 
 .previous-page button a {
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -1164,6 +1168,7 @@ input#profile-img-upload {
     padding: 0.729vw 0.938vw;
     border-radius: 0.313vw;
     border: none;
+    cursor: pointer;
 }
 
 button.update-info-btn {
