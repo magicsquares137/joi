@@ -185,6 +185,7 @@
         var formData = new FormData();
         formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
         formData.append('username', $('#profile-user-name').val());
+        formData.append('firstname', $('#profile-name').val());
         formData.append('image', $('#profile-img-upload')[0].files[0]);
         
         $.ajax({

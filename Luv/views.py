@@ -222,7 +222,9 @@ class ProfileView(LoginRequiredMixin,View):
         user_id = self.request.user.id
         user = User.objects.get(pk=user_id)
         username = request.POST.get('username')
-        user.first_name = username
+        firstname = request.POST.get('firstname')
+        user.username = username
+        user.first_name = firstname
 
         image = request.FILES.get('image')
         if image:
