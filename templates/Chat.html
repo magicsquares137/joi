@@ -35,7 +35,7 @@
                         <div class="user-chat-rs">
                             <div class="user-chat-data">
                                 {% if post.non_bot == 'user' %}
-                                <p class="user-title">{{ post.created_by }}</p>
+                                <p class="user-title">{{ post.created_by.first_name }}</p>
                                 {% else %}
                                 <p class="user-title">{{ post.character }}</p>
                                 {% endif %}
