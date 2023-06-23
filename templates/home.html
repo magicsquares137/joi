@@ -16,6 +16,7 @@
     </div>
     <div class="cards-container">
         <div class="cards-container">
+            {% if data.characters|length > 0 %}
             <ul id="cards-slider" class="cards-slider">
             {% for character in data.characters %}
                 <li>
@@ -57,6 +58,10 @@
                 </li>
             {% endfor %}
             </ul>
+            {% else %}
+            <p class="not-found-class">  No charaters found.</p>
+            {% endif %}
+            
                     </div>
                 </div>
                 <div class="container">

@@ -778,6 +778,10 @@ input[type="file"]::file-selector-button {
 }
 /* Profile CSS End */
 
+p.not-found-class {
+    font-size: 18px;
+}
+
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 750px){

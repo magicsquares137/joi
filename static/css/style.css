@@ -1269,6 +1269,14 @@ stroke: #000;
 .profile-back-mobile {
     display: none;
 }
+
+p.not-found-class {
+    color: var(--grey);
+    font-size: 2vw;
+    text-align: center;
+    opacity: 0.5;
+    margin-top: 5vw;
+}
 /* Theme Color Mode Styling End */
 
 
