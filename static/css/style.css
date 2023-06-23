@@ -214,6 +214,9 @@ a.vertical-menu-itm p {
 a.vertical-menu-itm.active p {
     color: var(--black);
 }
+a.vertical-menu-itm.active svg path, a.vertical-menu-itm.active:hover svg path {
+    stroke: var(--black);
+}
 a.vertical-menu-itm svg path {
     stroke: var(--white);
 }
@@ -225,12 +228,6 @@ a.vertical-menu-itm:last-child {
 a.vertical-menu-itm svg {
     width: 1.146vw;
     height: 1.146vw;
-}
-
-a.vertical-menu-itm:hover,
-a.vertical-menu-itm:hover svg path {
-    color: var(--yellow);
-    stroke: var(--yellow);
 }
 
 a.vertical-menu-itm.active svg path {
@@ -1310,4 +1307,10 @@ p.not-found-class {
     height: 10.26vw;
     object-fit: cover;
 }
+a.vertical-menu-itm:hover,
+a.vertical-menu-itm:hover svg path {
+    color: var(--yellow);
+    stroke: var(--yellow);
+}
+
 }
