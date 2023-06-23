@@ -209,6 +209,13 @@ a.vertical-menu-itm p {
     font-size: 0.521vw;
     line-height: 0.781vw;
     font-weight: 400;
+    color: var(--white);
+}
+a.vertical-menu-itm.active p {
+    color: var(--black);
+}
+a.vertical-menu-itm svg path {
+    stroke: var(--white);
 }
 
 a.vertical-menu-itm:last-child {

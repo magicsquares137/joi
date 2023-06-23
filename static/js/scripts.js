@@ -36,10 +36,11 @@ $(document).ready(function () {
   });
   
   // Chat Textarea js
-  $(document).ready(function () {
   $('textarea#id_message').attr('placeholder', 'Type a message').removeAttr('cols').removeAttr('rows').removeAttr('maxlength');
-  });
-  
+  $('#id_password').attr('placeholder', 'Password')
+
+  // Placeholder Js
+  $('#id_username').attr('placeholder', 'Username');
   
   });
   
