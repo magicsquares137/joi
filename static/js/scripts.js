@@ -67,3 +67,19 @@ $(document).ready(function () {
   function closeNav() {
   document.getElementById("mobile-search").style.height = "0%";
   }
+
+
+  // Active Class Js
+  $(document).ready(function () {
+  $('a.vertical-menu-itm').click(function() {
+    $("a.vertical-menu-itm").removeClass('active');
+  $(this).addClass('active');
+});
+
+var chatUrl = $("#chat-page-url")
+if(window.location.href.includes('chat')){
+  $("a.vertical-menu-itm").removeClass('active');
+  $(chatUrl).addClass('active');
+  }
+
+});
