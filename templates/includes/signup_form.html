@@ -12,5 +12,10 @@
   <div class="form-group">
     {% comment %} {{ field.label_tag }} {% endcomment %}
     {% render_field field class=field|input_class %}
+    {% for error in field.errors %}
+    <div class="invalid-feedback">
+      {{ error }}
+    </div>
+  {% endfor %}
   </div>
 {% endfor %}
