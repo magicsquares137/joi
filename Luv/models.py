@@ -5,6 +5,7 @@ from django.conf import settings
 import yaml
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from .validators import *
 
 with open(os.path.join(settings.BASE_DIR, "config.yml"), "r") as file:
     CONFIG = yaml.safe_load(file)
@@ -46,7 +47,7 @@ class Characters(models.Model):
         max_length=CONFIG["MODEL_SETTINGS"]["Characters"]["description_length"]
     )
     views = models.PositiveIntegerField(default=0)
-    main_Img = models.ImageField(upload_to="img/")
+    main_Img = models.ImageField(upload_to="img/", validators=[validate_file_size])
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
