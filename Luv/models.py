@@ -46,6 +46,9 @@ class Characters(models.Model):
     description = models.CharField(
         max_length=CONFIG["MODEL_SETTINGS"]["Characters"]["description_length"]
     )
+    tagline = models.CharField(
+        max_length=CONFIG["MODEL_SETTINGS"]["Characters"]["tagline_length"]
+    )
     views = models.PositiveIntegerField(default=0)
     main_Img = models.ImageField(upload_to="img/", validators=[validate_file_size])
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True, blank=True)

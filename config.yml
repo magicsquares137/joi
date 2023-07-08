@@ -1,7 +1,8 @@
 MODEL_SETTINGS:
   Characters:
     name_length: 30
-    description_length: 100
+    description_length: 10000
+    tagline_length: 1000
   User_Posts:
     message_length: 400
   Bot_Replies:
